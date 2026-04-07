@@ -1,0 +1,176 @@
+(function () {
+  var config = window.LS_ZH_OVERLAY || {};
+
+  if (config.enabled === false) {
+    return;
+  }
+
+  var TEXT_MAP = {
+    "Submit": "提交",
+    "Skip": "跳过"
+  };
+
+  var SKIP_TAGS = {
+    SCRIPT: true,
+    STYLE: true,
+    CODE: true,
+    PRE: true,
+    TEXTAREA: true
+  };
+
+  function shouldSkipElement(element) {
+    if (!element) {
+      return false;
+    }
+
+    if (SKIP_TAGS[element.tagName]) {
+      return true;
+    }
+
+    if (element.closest("script, style, code, pre, textarea")) {
+      return true;
+    }
+
+    return !!element.closest('[class*="task-text"], [class*="annotation"]');
+  }
+
+  function replaceText(text) {
+    var trimmed = text.trim();
+    var normalized = trimmed.replace(/\s+/g, " ");
+    var translated = null;
+
+    if (!trimmed) {
+      return text;
+    }
+
+    if (Object.prototype.hasOwnProperty.call(TEXT_MAP, trimmed)) {
+      translated = TEXT_MAP[trimmed];
+    } else if (Object.prototype.hasOwnProperty.call(TEXT_MAP, normalized)) {
+      translated = TEXT_MAP[normalized];
+    }
+
+    if (!translated) {
+      return text;
+    }
+
+    return text.replace(trimmed, translated);
+  }
+
+  function processTextNode(node) {
+    if (!node || !node.parentElement || shouldSkipElement(node.parentElement)) {
+      return;
+    }
+
+    var nextValue = replaceText(node.nodeValue);
+
+    if (nextValue !== node.nodeValue) {
+      node.nodeValue = nextValue;
+    }
+  }
+
+  function processAttributes(root) {
+    if (!(root instanceof Element) || shouldSkipElement(root)) {
+      return;
+    }
+
+    ["placeholder", "title", "aria-label", "value"].forEach(function (attr) {
+      if (!root.hasAttribute(attr)) {
+        return;
+      }
+
+      var currentValue = root.getAttribute(attr);
+      var nextValue = replaceText(currentValue);
+
+      if (nextValue !== currentValue) {
+        root.setAttribute(attr, nextValue);
+        if (attr === "value" && "value" in root) {
+          root.value = nextValue;
+        }
+      }
+    });
+  }
+
+  function walk(root) {
+    if (!root) {
+      return;
+    }
+
+    if (root.nodeType === Node.TEXT_NODE) {
+      processTextNode(root);
+      return;
+    }
+
+    if (root.nodeType !== Node.ELEMENT_NODE || shouldSkipElement(root)) {
+      return;
+    }
+
+    processAttributes(root);
+
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!node.parentElement || shouldSkipElement(node.parentElement)) {
+          return NodeFilter.FILTER_REJECT;
+        }
+
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+
+    while (walker.nextNode()) {
+      processTextNode(walker.currentNode);
+    }
+  }
+
+  var observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      if (mutation.type === "characterData") {
+        processTextNode(mutation.target);
+        return;
+      }
+
+      if (mutation.type === "attributes") {
+        processAttributes(mutation.target);
+        return;
+      }
+
+      mutation.addedNodes.forEach(function (node) {
+        walk(node);
+      });
+    });
+  });
+
+  function applyOverlay() {
+    walk(document.body);
+  }
+
+  function hookHistory(methodName) {
+    var original = history[methodName];
+
+    history[methodName] = function () {
+      var result = original.apply(this, arguments);
+      window.setTimeout(applyOverlay, 0);
+      return result;
+    };
+  }
+
+  hookHistory("pushState");
+  hookHistory("replaceState");
+
+  window.addEventListener("popstate", function () {
+    window.setTimeout(applyOverlay, 0);
+  });
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyOverlay, { once: true });
+  } else {
+    applyOverlay();
+  }
+
+  observer.observe(document.documentElement, {
+    childList: true,
+    subtree: true,
+    characterData: true,
+    attributes: true,
+    attributeFilter: ["placeholder", "title", "aria-label", "value"]
+  });
+})();
