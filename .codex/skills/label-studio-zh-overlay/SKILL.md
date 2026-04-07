@@ -1,6 +1,6 @@
 ---
 name: 升级到最新版
-description: 为 Label Studio 构建和维护中文界面 overlay。适用于以下场景：需要联网自动确认 GitHub 最新正式 release 并固定 Docker 基础镜像标签；需要下载对应版本源码并对前端、模板和配置中的英文 UI 文案做全量扫描，以生成中英文词典；需要通过 Django 模板打补丁和注入 JS/CSS 的方式做界面中文化；需要在不修改官方前端源码的前提下增强中文覆盖率。
+description: 为 Label Studio 构建和维护中文界面 overlay。适用于以下场景：需要联网自动确认 GitHub 最新正式 release 并固定 Docker 基础镜像标签；需要下载对应版本源码并对前端、模板和配置中的英文 UI 文案做全量扫描，以生成中英文词典；需要通过 Django 模板打补丁和注入 JS/CSS 的方式做界面中文化；需要在不修改官方前端源码的前提下增强中文覆盖率。翻译覆盖率优先于流程形式，新增高优先级 UI 文案不得静默留空。
 ---
 
 # Label Studio 中文 Overlay
@@ -11,12 +11,29 @@ description: 为 Label Studio 构建和维护中文界面 overlay。适用于以
 2. 交付物必须是正式仓库文件，而不是一次性分析脚本或临时说明。
 3. 主流程必须是“正式版确认 -> 正式产物骨架 -> 源码全量扫描 -> 结构化入库 -> 去噪提纯 -> 按模块整理词典 -> 注入验证”，不得跳步。
 4. 运行时词典必须服务于 UI 中文化，不得把测试代码、样式片段、路径常量、第三方代码碎片当成 UI 文案。
+5. `ls-zh.js` 的核心考核标准是“基于源码全量扫描后，实际保留下来了多少高置信可翻译英文 UI 文案并完成翻译”，而不是词典是否只是形式上分了模块。
+6. 用户若明确要求“所有网页交互文本都要翻译”，则按钮、标题、描述、菜单、标签、占位符、帮助提示、弹窗文案、导入导出格式名、账户菜单和导航项都视为必翻范围，不得只覆盖一部分页面。
+
+## 翻译优先
+
+1. 版本确认、Docker 骨架、模板注入都服务于“尽可能多地把真实 UI 文案翻成中文”；当流程完整性与翻译覆盖率冲突时，优先补足翻译并如实说明阻塞。
+2. 高优先级候选不得静默留空：必须命中已有翻译、命中术语表自动补译，或进入待补译报告。
+3. 验收时优先看高优先级未翻译数量、页面残留英文和运行时命中情况，而不是只看是否生成了某个 JSON。
+4. 需要重构或排查翻译链时，先读取 `references/translation-first-workflow.md`。
 
 ## 临时目录约定
 
 1. 下载、解压和分析最新版 Label Studio 源码时，统一使用仓库根目录 `.tmp/` 作为临时目录。
 2. `.tmp/` 仅用于缓存和分析，禁止作为正式项目文件或发布产物目录。
 3. 仓库必须在 `.gitignore` 中忽略 `/.tmp`，避免临时文件进入版本控制。
+
+## 跨机器复现
+
+1. 目标必须是“换机器、换干净仓库后，直接执行技能仍能达到当前中文化水平或继续迭代提升”。
+2. `scripts/` 属于正式生成工具链，必须作为仓库内容提交，不能只保留在本机。
+3. `translations/catalog.json` 属于翻译记忆库，必须作为仓库内容提交，不能只靠本地缓存。
+4. 允许忽略的仅限临时分析目录和运行数据目录，例如 `/.tmp`、`/data`；不得再忽略 `scripts/` 或 `translations/`。
+5. 若本次新增了术语、自动补译规则、页面验收规则或手工确认译文，必须同步沉淀到正式文件，而不是只停留在当前执行上下文。
 
 ## 基本规则
 
@@ -37,8 +54,14 @@ description: 为 Label Studio 构建和维护中文界面 overlay。适用于以
 3. `patches/apply_overlay.py`
 4. `overrides/static/zh-overlay/ls-zh.js`
 5. `overrides/static/zh-overlay/ls-zh.css`
-6. `README.md`
-7. `.tmp/` 下的结构化扫描结果文件
+6. `scripts/extract_label_studio_strings.py`
+7. `scripts/generate_overlay_dictionary.py`
+8. `scripts/sync_translation_catalog.py`
+9. `scripts/build_overlay_js.py`
+10. `scripts/verify_runtime_overlay.py`
+11. `translations/catalog.json`
+12. `README.md`
+13. `.tmp/` 下的结构化扫描结果文件
 
 ## 必须流程
 
@@ -48,7 +71,9 @@ description: 为 Label Studio 构建和维护中文界面 overlay。适用于以
 4. 先把全量扫描结果写入结构化 JSON。
 5. 对扫描结果做去噪和模块归类。
 6. 基于模块化结果生成或更新运行时词典。
-7. 再做模板注入、构建验证和回读校验。
+7. 输出未翻译报告并审计高优先级漏项。
+8. 再做模板注入、构建验证和回读校验。
+9. 必须做页面导向验收，并根据验收结果继续迭代，直到关键页面达到可用水平。
 
 ## 禁止行为
 
@@ -58,6 +83,9 @@ description: 为 Label Studio 构建和维护中文界面 overlay。适用于以
 4. 禁止把 `latest`、`develop`、`nightly`、RC、临时构建标签当默认正式版镜像。
 5. 禁止整文件覆盖官方模板或直接修改官方前端源码。
 6. 禁止把“看到页面漏一个补一个”当主流程，只能作为全量扫描之后的补充校对。
+7. 禁止把 `ls-zh.js` 退化成只包含少量示例翻译、演示词条或几十条高频词的“瘦词典”，尤其不能在已经完成源码全量扫描后仍只保留明显偏少的 UI 映射。
+8. 禁止把 `docs`、`tests`、`storybook`、`fixtures`、`mocks`、`cypress/playwright/e2e` 等非运行时界面目录当成主要扫描来源，否则会稀释真实 UI 文案。
+9. 禁止把 `scripts/`、`translations/` 或翻译记忆相关文件重新加入 `.gitignore`，否则会破坏跨机器复现。
 
 ## 版本确认
 
@@ -101,10 +129,22 @@ description: 为 Label Studio 构建和维护中文界面 overlay。适用于以
    - `COPY overrides/static/zh-overlay/ls-zh.css ...`
    - `COPY patches/apply_overlay.py /tmp/apply_overlay.py`
    - `RUN python /tmp/apply_overlay.py && rm -f /tmp/apply_overlay.py`
-5. 下载该版本源码到仓库根目录 `.tmp/`，仅用于分析，不修改官方源码。
-6. 先从源码中系统提取英文文案，再用运行页面做补充校验。
-7. 必须优先运行 `scripts/extract_label_studio_strings.py` 对最新版源码做全量扫描，并把结果先写入 `.tmp/` 下的结构化 JSON 文件，不允许跳过“先入库”。
-8. 必须基于扫描结果按模块整理 `ls-zh.js`，至少包含：
+5. 生成或更新 `docker-compose.yml` 时，优先采用技能附件中的数据库版模板骨架，而不是退化为单容器方案：
+   - 包含 `db` 与 `label-studio` 两个服务
+   - `db` 使用 `pgautoupgrade/pgautoupgrade:17-alpine`
+   - `label-studio` 使用 `build: .` 并固定 `image: label-studio-zh-docker:<version>`
+   - 默认端口映射为 `8090:8000`
+   - 默认数据卷为 `./data/postgres` 与 `./data/label-studio`
+   - `restart` 统一使用 `always`
+6. 下载该版本源码到仓库根目录 `.tmp/`，仅用于分析，不修改官方源码。
+7. 先从源码中系统提取英文文案，再用运行页面做补充校验；扫描时必须主动排除 `docs/tests/stories/mocks/fixtures/e2e` 等噪声目录。
+8. 必须优先运行 `scripts/extract_label_studio_strings.py` 对最新版源码做全量扫描，并把结果先写入 `.tmp/` 下的结构化 JSON 文件，不允许跳过“先入库”。
+9. 必须继续运行 `scripts/generate_overlay_dictionary.py`，基于扫描 JSON 产出“高置信 UI 文案候选词典”，不能直接靠人工挑几十条示例词。
+10. 必须继续运行 `scripts/sync_translation_catalog.py`，把最新候选词典同步进翻译目录，禁止沿用缺少新词条的陈旧 `translations.json` 直接构建；同时输出“全部未翻译”和“高优先级未翻译”两个报告。
+10.1. `scripts/sync_translation_catalog.py` 必须优先复用现有翻译，并对高优先级新增候选尝试术语级自动补译；无法自动补译时必须进入待补译报告，不得静默丢弃。
+10.2. 必须继续运行 `scripts/verify_runtime_overlay.py`，按登录页、首页、数据管理、项目设置、账户设置、热键页等焦点区域输出页面导向验收报告。
+11. 必须继续运行生成脚本，把“现有翻译 + 候选词典”合并并重建 `ls-zh.js`，而不是长期手工维护最终 JS 文件。
+12. 必须基于扫描结果和候选词典结果整理 `ls-zh.js`，至少包含：
    - `auth`
    - `home`
    - `projects`
@@ -112,10 +152,15 @@ description: 为 Label Studio 构建和维护中文界面 overlay。适用于以
    - `data_manager`
    - `labeling`
    - `settings`
+   - `storage`
+   - `webhooks`
    - `organization`
    - `templates`
-9. 使用 Docker 构建阶段补丁脚本，在模板稳定锚点插入 hook JS/CSS。
-10. 重新构建并验证登录页、首页、主应用页和创建项目弹窗。
+13. 在整理 `ls-zh.js` 时，模块划分只是组织方式，不是缩减词条数量的理由；应优先尽可能保留经过去噪后的高置信 UI 文案，确保词典规模与扫描结果相称，而不是每个模块只保留少量示例。
+14. 构建 `ls-zh.js` 时必须同时输出未翻译候选报告；若导航、按钮、设置项、导入导出格式、账户菜单、热键设置、导出弹窗等高优先级词条仍未翻译，不得宣称技能已完整完成。
+15. 使用 Docker 构建阶段补丁脚本，在模板稳定锚点插入 hook JS/CSS。
+16. 重新构建并验证登录页、首页、主应用页、创建项目弹窗、账户设置页、热键页、导出弹窗、顶部导航、侧边导航和账户下拉菜单。
+17. 如果页面导向验收、浏览器抽样或页面复测仍发现关键区域残留英文，必须按“提取缺口 / 去噪误杀 / 词典缺口 / 运行时匹配缺口”分类修复后重新执行第 8-16 步，直到焦点页面达到可用水平。
 
 ## 失败降级
 
@@ -160,13 +205,19 @@ description: 为 Label Studio 构建和维护中文界面 overlay。适用于以
 3. 全量扫描结果必须先入库，再按模块整理，不采用只挑高频词的方式代替全量扫描。
 4. 重点优先校对以下模块：
    - 登录注册
+   - 账户与个人设置
+   - 热键设置
    - 首页欢迎区和资源卡片
    - 项目列表
    - 创建项目
    - 导入导出
+   - 导出格式弹窗
    - 数据管理
    - 标注页按钮
    - 设置页
+   - 存储页
+   - Webhooks
+   - 顶部导航、侧边导航、账户下拉菜单
    - 成员与组织
    - 模板分类
    - 模板标题
@@ -181,6 +232,7 @@ description: 为 Label Studio 构建和维护中文界面 overlay。适用于以
 10. `ls-zh.js` 的运行时词典必须按模块维护，不允许长期保持单一大平铺对象；至少要能看出来源模块和后续补词入口。
 11. 生成词典前必须先做“去噪”，至少排除：
    - 测试用例字符串
+   - 文档站点和 README/设计文档内容
    - CSS 类名
    - 颜色值
    - 文件路径
@@ -188,6 +240,9 @@ description: 为 Label Studio 构建和维护中文界面 overlay。适用于以
    - 第三方库代码片段
    - 构建产物和打包残片
 12. 只有通过去噪后的字符串，才允许进入运行时词典。
+13. 词典生成后的结果量必须与扫描结果大致匹配：在完成全量扫描后，应优先纳入大量高置信标题、按钮、菜单、说明、空状态、模板标题、设置项、导入导出项、数据管理操作等真实 UI 文案，不能只留下少量样例词条。
+14. 如果扫描结果里存在数百乃至上千条高置信 UI 文案候选，而 `ls-zh.js` 最终只保留几十条词条，默认视为生成策略有问题，必须继续提纯和补齐，而不是直接交付。
+15. 模块化只是维护手段；用户如果更关注“扫出了多少英文并翻译了多少”，则必须优先保证覆盖率和词条规模，再谈模块结构。
 
 ## JS 实现要求
 
@@ -199,14 +254,19 @@ description: 为 Label Studio 构建和维护中文界面 overlay。适用于以
    - `CODE`
    - `PRE`
    - `TEXTAREA`
-   - class 包含 `task-text` 或 `annotation` 的区域
+   - 真实任务正文、结果区域和标注数据节点
 4. 同时处理常见属性：
    - `placeholder`
    - `title`
    - `aria-label`
+   - `aria-placeholder`
+   - `alt`
+   - `data-tooltip`
+   - `data-title`
    - `value`
 5. Hook `history.pushState`、`history.replaceState` 和 `popstate`。
-6. 在实现层面为“条件翻译”的示例区域预留独立选择器或规则，避免和真实任务数据共用同一套替换逻辑。
+6. 不能用过宽的选择器（例如简单按 `annotation` 关键字）整体跳过区域，否则会误伤正常 UI 按钮、标题和设置文案。
+7. 对精确匹配失败但明显属于 UI 文案的长句或嵌入式说明，允许使用安全的短语级替换作为补充，但仍必须避开真实任务数据区域。
 
 ## 验证方式
 
@@ -214,14 +274,18 @@ description: 为 Label Studio 构建和维护中文界面 overlay。适用于以
 2. 检查容器内模板补丁结果和静态资源是否存在。
 3. 访问 `/user/login/`、`/`、主应用页和创建项目弹窗，确认是否命中注入资源。
 4. 若部分页面未命中，优先回查模板继承链，继续补公共入口模板，而不是直接整文件覆盖某个页面模板。
-5. 抽样比对源码字符串、生成字典和运行页面，确认字典不是凭经验手写遗漏。
-6. 回读所有修改文件，确认中文未乱码且为 UTF-8 无 BOM。
-7. 若因外部网络、镜像仓库或环境问题导致构建失败，必须明确区分“代码问题”和“外部依赖问题”，不得把外部超时误报成技能执行完成。
+5. 额外抽样检查：账户设置、热键设置、导出弹窗、顶部导航、侧边导航、账户下拉菜单。
+6. 抽样比对源码字符串、生成字典和运行页面，确认字典不是凭经验手写遗漏。
+7. 回读所有修改文件，确认中文未乱码且为 UTF-8 无 BOM。
+8. 若因外部网络、镜像仓库或环境问题导致构建失败，必须明确区分“代码问题”和“外部依赖问题”，不得把外部超时误报成技能执行完成。
 
 ## 验收门槛
 
 1. 没有结构化扫描结果文件，不算完成。
+1.1. 没有“全部未翻译报告”和“高优先级未翻译报告”，不算完成。
 2. `ls-zh.js` 不是基于扫描结果按模块整理，不算完成。
+2.1. `ls-zh.js` 如果虽然按模块组织，但词条量明显偏少、与扫描结果不相称，仍不算完成。
+2.2. 若高优先级未翻译报告中仍有导航、按钮、标题、描述、菜单、设置项、导出格式、账户菜单、热键设置等条目，则不得宣称“已全部翻译完成”。
 3. 只更新 README 或只改 Docker 标签，不算完成“升级到最新版”。
 4. 使用了 `latest`、develop、nightly、RC 或与用户要求不一致的镜像标签，视为未按要求执行。
 5. 中文乱码、非 UTF-8 无 BOM、整文件粗暴覆盖、未校验回读，均视为未完成。
@@ -232,12 +296,19 @@ description: 为 Label Studio 构建和维护中文界面 overlay。适用于以
 
 1. 优先复用技能附件中的模板文件，而不是每次从零手写：
    - `assets/Dockerfile.template`
+   - `assets/docker-compose.yml.template`
    - `assets/apply_overlay.py.template`
    - `assets/ls-zh.js.template`
    - `assets/ls-zh.css.template`
    - `scripts/extract_label_studio_strings.py`
+   - `scripts/generate_overlay_dictionary.py`
+   - `scripts/sync_translation_catalog.py`
+   - `scripts/build_overlay_js.py`
 2. `scripts/extract_label_studio_strings.py` 用于从指定版本源码中全量提取模板分类、模板标题以及模板、前端、配置中的候选 UI 字符串。
-3. 这些附件只作为骨架模板，真正的英文文案仍必须来自对应版本源码提取。
+3. `scripts/generate_overlay_dictionary.py` 用于从结构化扫描结果中过滤测试、样式、构建碎片和代码片段，并生成高置信 UI 文案候选词典。
+4. `scripts/sync_translation_catalog.py` 用于把最新候选词典与现有翻译目录合并，补齐新增 source，避免构建继续使用过期翻译目录。
+5. `scripts/build_overlay_js.py` 用于把“现有翻译 + 候选词典”合并并生成最终运行时 `ls-zh.js`，同时输出未翻译候选清单，供后续补译。
+5. 这些附件只作为骨架模板，真正的英文文案仍必须来自对应版本源码提取。
 
 ## 输出要求
 

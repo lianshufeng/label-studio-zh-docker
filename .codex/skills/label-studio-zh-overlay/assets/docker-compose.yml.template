@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  db:
+    image: pgautoupgrade/pgautoupgrade:17-alpine
+    container_name: labelstudio-db
+    restart: always
+    environment:
+      POSTGRES_DB: labelstudio
+      POSTGRES_USER: labelstudio
+      POSTGRES_PASSWORD: labelstudio123
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+
+  label-studio:
+    build:
+      context: .
+    image: label-studio-zh-docker:{{VERSION}}
+    container_name: labelstudio
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8090:8000"
+    environment:
+      DJANGO_DB: default
+      POSTGRE_NAME: labelstudio
+      POSTGRE_USER: labelstudio
+      POSTGRE_PASSWORD: labelstudio123
+      POSTGRE_PORT: 5432
+      POSTGRE_HOST: db
+      JSON_LOG: "1"
+    volumes:
+      - ./data/label-studio:/label-studio/data
+    command: label-studio-uwsgi
