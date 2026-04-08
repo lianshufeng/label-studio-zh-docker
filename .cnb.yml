@@ -1,4 +1,4 @@
-testing:
+"**":
   push:
     - name: docker-build-and-push
       services:
