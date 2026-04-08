@@ -1,36 +1,94 @@
 # label-studio-zh-docker
 
-这是一个基于 `heartexlabs/label-studio:1.23.0` 构建的 Label Studio 中文界面 overlay 仓库。仓库当前固定在 `1.23.0`，通过 Docker 构建时注入自定义 CSS、JS 和模板补丁，不直接修改官方前端源码。
+这是一个基于 `heartexlabs/label-studio:1.23.0` 的 Label Studio 中文 overlay 镜像仓库。
 
-## 快速启动
+仓库做的事情很简单：
+
+- 不修改官方前端源码
+- 通过 `Dockerfile` 注入中文 overlay 资源
+- 通过 `patches/apply_overlay.py` 给模板加上 JS / CSS 挂载点
+- 通过 CNB 自动构建并推送镜像到国内仓库 `cnb.cool/vvllm/label-studio-zh-docker:{分支名}`，同时保留海外仓库 `lianshufeng/label-studio-zh:{分支名}` 作为兼容镜像
+
+## 镜像用途
+
+镜像启动后，Label Studio 仍然保持原有功能，只是在运行时额外挂载中文 overlay，用于改善中文界面文案覆盖率。
+
+当前仓库默认固定使用：
+
+- 基础镜像：`heartexlabs/label-studio:1.23.0`
+- 海外发布镜像：`lianshufeng/label-studio-zh:{分支名}`
+- 国内发布镜像：`cnb.cool/vvllm/label-studio-zh-docker:{分支名}`
+
+这里的 `{分支名}` 由 CNB 构建时自动生成，通常对应当前分支名。
+
+## 本地运行
+
+如果你只是想本地启动验证：
 
 ```bash
 docker compose up --build
 ```
 
-启动后访问 `http://localhost:8090`。
+启动后访问：
 
-首次启动会同时拉起 PostgreSQL 和 Label Studio；持久化数据默认写入 `./data/postgres` 与 `./data/label-studio`。
+- `http://localhost:8090`
 
-## 当前实现
+本地 compose 会同时启动：
 
-- `Dockerfile` 以 `heartexlabs/label-studio:1.23.0` 为基础镜像，并在构建阶段复制 `ls-zh.js`、`ls-zh.css` 与 `patches/apply_overlay.py`。
-- `patches/apply_overlay.py` 会对 `base.html` 和 `simple.html` 做锚点补丁，注入 `/static/zh-overlay/ls-zh.css`、`/static/zh-overlay/ls-zh.js` 和 `window.LS_ZH_OVERLAY` 配置。
-- `docker-compose.yml` 使用 `pgautoupgrade/pgautoupgrade:17-alpine` 作为数据库，应用容器镜像名固定为 `lianshufeng/label-studio-zh:1.23.0`，默认端口映射为 `8090:8000`。
-- 当前维护方式是直接在当前分支执行扫描、词典同步和构建；是否按版本号切分支由使用者自行决定。
+- PostgreSQL
+- Label Studio
+
+数据默认持久化到：
+
+- `./data/postgres`
+- `./data/label-studio`
+
+## 镜像构建
+
+仓库根目录的 `Dockerfile` 会在构建时完成两件事：
+
+1. 把 `overrides/static/zh-overlay/ls-zh.js` 和 `overrides/static/zh-overlay/ls-zh.css` 复制进镜像
+2. 执行 `patches/apply_overlay.py`，把模板中的中文 overlay 资源注入进去
+
+CNB 使用 `.cnb.yml` 直接构建并推送镜像，镜像标签规则为：
+
+- `lianshufeng/label-studio-zh:${BRANCH_NAME}`
+- `cnb.cool/vvllm/label-studio-zh-docker:${BRANCH_NAME}`
+
+其中分支名会自动转换为小写，并把 `/`、空格替换成 `-`，避免生成非法 tag。
 
 ## 目录说明
 
-- `overrides/static/zh-overlay/ls-zh.js`：运行时中文词典与 DOM 替换逻辑。
-- `overrides/static/zh-overlay/ls-zh.css`：少量补充样式。
-- `patches/apply_overlay.py`：模板注入补丁脚本。
-- `scripts/`：源码提取、候选词典生成、翻译目录同步、运行时 JS 构建、运行时审计脚本。
-- `translations/catalog.json`：已确认的翻译记忆库。
-- `.tmp/`：源码缓存、结构化扫描结果和报告输出目录，不作为正式发布产物。
+- `Dockerfile`：镜像构建入口
+- `docker-compose.yml`：本地联调环境
+- `patches/apply_overlay.py`：模板注入脚本
+- `overrides/static/zh-overlay/ls-zh.js`：运行时中文替换逻辑
+- `overrides/static/zh-overlay/ls-zh.css`：少量样式补充
+- `scripts/`：字符串提取、词典生成、翻译同步、JS 构建、运行时校验脚本
+- `translations/catalog.json`：翻译记忆库
+- `.cnb.yml`：CNB 自动构建配置
 
-## 重新生成 overlay
+## 运行时覆盖范围
 
-在已经准备好 `.tmp/label-studio-1.23.0/` 上游源码目录后，可按下面顺序重跑生成链：
+当前 overlay 的目标是覆盖真实 UI 中常见的中文界面文案，包括但不限于：
+
+- 登录与注册
+- 首页与项目列表
+- 创建项目弹窗
+- 导入导出
+- 数据管理
+- 标注页面
+- 设置页面
+- 存储
+- Webhooks
+- 账户菜单与个人设置
+- 顶部导航和侧边导航
+
+不会去改动真实业务数据、标注内容、代码片段或第三方库内部实现。
+
+## 中文化流程
+
+如果你要重新生成 `ls-zh.js`，推荐按仓库里的脚本链路执行：
 
 ```bash
 python scripts/extract_label_studio_strings.py .tmp/label-studio-1.23.0 --output .tmp/label-studio-1.23.0-strings.json
@@ -40,19 +98,29 @@ python scripts/build_overlay_js.py .tmp/label-studio-1.23.0-translations.json --
 python scripts/verify_runtime_overlay.py --translations-json .tmp/label-studio-1.23.0-translations.json --high-priority-report .tmp/label-studio-1.23.0-high-priority-missing.json --untranslated-report .tmp/label-studio-1.23.0-untranslated-overlay.json --output .tmp/label-studio-1.23.0-runtime-audit.json
 ```
 
-如果宿主机没有 Python，应改为在容器内执行同一套脚本，而不是跳过扫描和词典生成。
+这条链路的核心是：
 
-## 当前产物与状态
+- 先从官方源码提取英文 UI 字符串
+- 再生成候选词典
+- 再同步到翻译目录
+- 再生成最终运行时 `ls-zh.js`
+- 最后做运行时覆盖校验
 
-- 当前仓库已包含 `.tmp/label-studio-1.23.0-strings.json`、`.tmp/label-studio-1.23.0-dictionary.json`、`.tmp/label-studio-1.23.0-translations.json`、`.tmp/label-studio-1.23.0-missing-translations.json`、`.tmp/label-studio-1.23.0-high-priority-missing.json`、`.tmp/label-studio-1.23.0-untranslated-overlay.json` 和 `.tmp/label-studio-1.23.0-runtime-audit.json`。
-- `translations/catalog.json` 当前包含 12 个模块、514 条已沉淀词条：`auth`、`home`、`projects`、`import_export`、`data_manager`、`labeling`、`settings`、`storage`、`webhooks`、`organization`、`templates`、`generic`。
-- 当前候选词典包含 3990 条候选字符串；高优先级未翻译报告中仍有 373 条待补，运行时未翻译报告中仍有 3496 条待补。
-- 运行时审计结果显示 6 个焦点区域当前已无“必补缺口”，但 `login`、`home`、`data_manager`、`project_settings`、`account_settings`、`hotkeys` 仍有残留英文，当前状态不能视为“全部页面已完成中文化”。
-- 本地已成功构建 `lianshufeng/label-studio-zh:1.23.0`，并确认镜像内 `base.html`、`simple.html`、`ls-zh.css`、`ls-zh.js` 均已命中注入；容器内访问 `/` 与 `/user/login/` 时可看到 overlay 资源已加载。鉴权后的主应用页、创建项目弹窗、账户设置页和热键页本次仍以运行时审计报告为主，尚未完成浏览器登录态逐页复测。
+## 构建说明
 
-## 版本来源
+CNB 构建成功后，会产出并推送：
 
-- GitHub Release：`https://github.com/HumanSignal/label-studio/releases/tag/1.23.0`
-- Docker 标签：`heartexlabs/label-studio:1.23.0`
+- `lianshufeng/label-studio-zh:{分支名}`
+- `cnb.cool/vvllm/label-studio-zh-docker:{分支名}`
 
-这里固定使用明确的正式版本标签，而不是 `latest`，目的是保证构建结果可复现，避免上游镜像漂移导致词典、模板锚点和运行行为不一致。
+如果你后续想在别的环境里做发布，可以继续沿用这个 tag 规则。
+
+## 已知状态
+
+当前仓库重点是：
+
+- 可直接 Docker 构建
+- 可通过 CNB 自动推送镜像
+- 中文 overlay 资源已经接入模板
+
+如果你发现页面里还有英文残留，通常不是构建链路问题，而是 `ls-zh.js` 里还需要补充对应文案。
