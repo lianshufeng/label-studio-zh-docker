@@ -11,7 +11,7 @@
             - |
               set -euo pipefail
 
-              IMAGE_REPO="vvllm/label-studio-zh-docker"
+              IMAGE_REPO="${CNB_DOCKER_REGISTRY}/vvllm/label-studio-zh-docker"
 
               BRANCH_NAME="${CNB_BRANCH:-${CNB_REF_NAME:-${CNB_TAG:-${CNB_COMMIT_SHORT:-latest}}}}"
               BRANCH_NAME="$(printf '%s' "${BRANCH_NAME}" | tr '[:upper:]' '[:lower:]' | tr '/ ' '--')"
