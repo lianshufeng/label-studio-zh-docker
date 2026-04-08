@@ -45,9 +45,9 @@ python scripts/verify_runtime_overlay.py --translations-json .tmp/label-studio-1
 ## 当前产物与状态
 
 - 当前仓库已包含 `.tmp/label-studio-1.23.0-strings.json`、`.tmp/label-studio-1.23.0-dictionary.json`、`.tmp/label-studio-1.23.0-translations.json`、`.tmp/label-studio-1.23.0-missing-translations.json`、`.tmp/label-studio-1.23.0-high-priority-missing.json` 和 `.tmp/label-studio-1.23.0-coverage-report.json`。
-- `translations/catalog.json` 当前包含 12 个模块、435 条已沉淀词条：`auth`、`home`、`projects`、`import_export`、`data_manager`、`labeling`、`settings`、`storage`、`webhooks`、`organization`、`templates`、`generic`。
-- 当前候选词典包含 3144 条候选字符串；高优先级未翻译报告中仍有 1233 条待补。
-- 覆盖率审计结果显示 6 个焦点区域中仍有 3 个存在必补缺口：`data_manager`、`project_settings`、`account_settings`；`login`、`home`、`data_manager`、`project_settings`、`account_settings`、`hotkeys` 仍有残留英文，当前状态不能视为“全部页面已完成中文化”。
+- `translations/catalog.json` 当前包含 10 个模块、38 条已沉淀词条：`auth`、`home`、`projects`、`import_export`、`data_manager`、`labeling`、`settings`、`webhooks`、`organization`、`generic`。
+- 当前候选词典包含 3990 条候选字符串；高优先级未翻译报告中仍有 668 条待补，运行时未翻译报告中仍有 3953 条待补。
+- 覆盖率审计结果显示 6 个焦点区域当前已无“必补缺口”，但 `login`、`home`、`data_manager`、`project_settings`、`account_settings`、`hotkeys` 仍有残留英文，当前状态不能视为“全部页面已完成中文化”。
 
 ## 版本来源
 

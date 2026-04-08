@@ -1,854 +1,572 @@
 (function () {
-  "use strict";
-
   var config = window.LS_ZH_OVERLAY || {};
-
   if (config.enabled === false) {
     return;
   }
 
   var MODULE_MAPS = {
-  auth: {
-    "Access Token": "访问令牌",
-    "Log in": "登录",
-    "Learn more": "了解更多",
-    "My Account": "我的账户",
-    "Personal Access Token": "个人访问令牌",
-    "Account & Settings": "账户和设置",
-    "Data Manager": "数据管理",
-    "Email Preferences": "邮件偏好",
-    "Membership Info": "成员信息",
-    "Sign up": "注册",
-    "Docs": "文档",
-    "Export": "导出",
-    "Import": "导入",
-    "Select an option": "选择一个选项",
-    "Customize your keyboard shortcuts to speed up your workflow. Click on any hotkey below to assign a new key combination that works best for you.": "自定义键盘快捷键以提升工作效率。点击下方任意快捷键即可分配更适合您的新组合键。",
-    "Create Account": "创建账户",
-    "Label Studio Logo": "标签工作室标志",
-    "Did you know?": "你可知道？",
-    "Create a copy of the selected region": "创建所选区域的副本",
-    "First Name": "名字",
-    "Label Studio now has a Starter Cloud offering optimized for small teams and projects.": "Label Studio 现在拥有针对小型团队和项目进行优化的 Starter Cloud 产品。",
-    "Last Name": "姓氏",
-    "Save": "保存",
-    "Select all text in current phrase and create annotation": "选择当前短语中的所有文本并创建注释",
-    "Shortcuts for common annotation tasks like submit, skip, undo and redo": "提交、跳过、撤消和重做等常见注释任务的快捷方式",
-    "Shortcuts for navigating and managing tasks in Project's Data Manager": "在项目数据管理器中导航和管理任务的快捷方式",
-    "Copy your new access token from below and keep it secure.": "请从下方复制新的访问令牌并妥善保管。",
-    "Create a relation between selected regions": "创建选定区域之间的关系",
-    "Delete currently selected region": "删除当前选定的区域",
-    "Delete Selected Region": "删除选定区域",
-    "Delete selected segment": "删除选定的段",
+  "auth": {
     "A full-fledged open source solution for data labeling": "一个功能完整的数据标注开源方案",
-    "Create Region Relation": "创建区域关系",
-    "Delete All Regions": "删除所有区域",
-    "Delete Segment": "删除片段",
-    "Failed to save imported hotkeys": "无法保存导入的热键",
-    "How did you hear about Label Studio?": "您是如何得知 Label Studio 的？",
-    "Shortcuts for manipulating time series data regions": "操作时间序列数据区域的快捷方式",
-    "You can only have one active token": "您只能拥有一个活跃令牌",
-    "Edit metadata for selected region": "编辑所选区域的元数据",
-    "Import Hotkeys": "导入快捷键",
-    "Reset Hotkeys to Defaults?": "要将快捷键恢复为默认设置吗？",
-    "Submit Annotation": "提交标注",
-    "Submit the current annotation": "提交当前注释",
-    "Unknown error": "未知错误",
-    "All hotkeys and settings have been reset to defaults and saved": "所有热键和设置已重置为默认值并保存",
-    "Click to edit hotkey": "点击编辑热键",
-    "Create New Token": "创建新令牌",
-    "Edit Region Metadata": "编辑区域元数据",
-    "Great news!": "好消息！",
-    "No hotkeys found in the imported data": "导入数据中未找到热键",
-    "See all templates": "查看所有模板",
-    "Shortcuts for controlling tools panel when labeling images": "标注图像时控制工具面板的快捷方式",
-    "Annotations completed by you": "由您完成的注释",
-    "Cancel": "取消",
-    "Could not load custom hotkeys from server, using cached settings": "无法使用缓存设置从服务器加载自定义热键",
-    "Email Address": "邮箱地址",
-    "Error loading hotkeys from API:": "从 API 加载热键时出错：",
-    "Projects contributed by you": "您贡献的项目",
-    "Use this token to authenticate with our API:": "使用此令牌通过我们的 API 进行身份验证：",
-    "Annotations Submitted": "已提交的标注",
-    "Brought to you by": "由以下团队提供",
-    "Keep me logged in this browser": "在此浏览器中保持登录",
-    "Organization ID": "组织 ID",
-    "We'll send you sms with code if you change your number": "如果您更改号码，我们会向您发送包含代码的短信",
-    "Your active organization": "您的活跃组织",
-    "Your role": "你的角色",
-    "Allow Duplicate": "允许重复",
-    "Already have an account?": "已有账户？",
-    "Choose": "选择",
-    "Created": "已创建",
-    "Documentation": "文档",
-    "Don't have an account?": "还没有账户？",
-    "Hotkeys JSON": "快捷键 JSON",
-    "Request error:": "请求错误：",
-    "Apply": "应用",
-    "Click to set shortcut": "点击设置快捷键",
-    "3-Point Rectangle": "三点矩形",
-    "Personal Info": "个人信息",
-    "Reset to Defaults": "恢复默认",
-    "Select the key point annotation tool": "选择关键点标注工具",
-    "Select the move tool to reposition annotations": "选择移动工具来重新定位注释",
-    "Select the polygon annotation tool": "选择多边形注释工具",
-    "Select the rectangle annotation tool": "选择矩形注释工具",
-    "Focus Closed Task": "焦点封闭任务",
-    "Focus Next Task": "聚焦下一个任务",
-    "Focus on the closed task column": "关注已关闭的任务栏",
-    "Focus on the open task column": "关注未完成的任务栏",
-    "Focus Open Task": "焦点开放任务",
-    "Focus Previous Task": "聚焦上一个任务",
-    "Move focus to the next task": "将焦点转移到下一个任务",
-    "Move focus to the previous task": "将焦点移至上一个任务",
-    "Select All and Annotate": "全选并注释",
-    "Select the brush tool": "选择画笔工具",
-    "Select the ellipse tool": "选择椭圆工具",
-    "Select the eraser tool": "选择橡皮擦工具",
-    "Select the magic wand tool for smart region selection": "选择魔棒工具进行智能区域选择",
-    "Shortcuts for navigating between images in multi-image tasks": "在多图任务中切换图片的快捷方式",
-    "Skip Task": "跳过任务",
-    "Skip the current task": "跳过当前任务",
-    "Decrease Tool Size": "减小工具大小",
-    "Increase Tool Size": "增大工具大小",
-    "Shortcuts for creating, selecting and manipulating annotation regions": "用于创建、选择和操作注释区域的快捷方式",
-    "Step Back": "后退一步",
-    "Step Forward": "前进一步",
+    "Access Token": "访问令牌",
+    "Account & Settings": "账户与设置",
+    "All hotkeys and settings have been reset to defaults and saved": "所有快捷键和设置都已重置为默认值并保存",
     "Annotation Actions": "标注操作",
-    "Click to record keyboard shortcut": "点击录制键盘快捷键",
-    "Show or hide the selected region": "显示或隐藏所选区域",
-    "Unselect Region": "取消选择区域",
+    "Annotations completed by you": "由你完成的标注",
     "Audio Controls": "音频控制",
-    "Auto Detect": "自动检测",
-    "Brush Tool": "画笔工具",
-    "Cycle Regions": "循环切换区域",
-    "Duplicate Region": "复制区域",
-    "Ellipse Tool": "椭圆工具",
-    "Eraser Tool": "橡皮擦工具",
-    "Exit Region Mode": "退出区域模式",
-    "Extend Left": "向左扩展",
-    "Extend Left (Large)": "大幅向左扩展",
-    "Extend Right": "向右扩展",
-    "Extend Right (Large)": "大幅向右扩展",
-    "First Frame": "第一帧",
+    "Auto-Label Tasks": "自动标注任务",
+    "Cancel": "取消",
+    "Copied!": "已复制！",
+    "Create a copy of the selected region": "创建所选区域的副本",
+    "Create a relation between selected regions": "在所选区域之间创建关系",
+    "Create Account": "创建账户",
+    "Create New Token": "创建新 令牌",
+    "Create Region Relation": "创建区域关系",
+    "Customize your keyboard shortcuts to speed up your workflow. Click on any hotkey below to assign a new key combination that works best for you.": "自定义键盘快捷键以加快工作流程。 点击下方任意快捷键即可分配最适合你的新按键组合。",
+    "Data Manager": "数据管理",
+    "Delete All Regions": "删除所有区域",
+    "Delete currently selected region": "删除当前选中的区域",
+    "Delete Segment": "删除片段",
+    "Delete Selected Region": "删除所选区域",
+    "Delete selected segment": "删除所选片段",
+    "Did you know?": "你知道吗？",
+    "Docs": "文档",
+    "Documentation": "文档",
+    "E-mail": "电子邮箱",
+    "Edit metadata for selected region": "编辑所选区域元数据",
+    "Edit Region Metadata": "编辑区域元数据",
+    "Email Preferences": "邮件偏好",
+    "Export": "导出",
+    "Failed to save imported hotkeys": "保存导入的快捷键失败",
+    "First Name": "名",
+    "Focus Closed Task": "聚焦已关闭任务",
     "Focus First Region": "聚焦第一个区域",
-    "Hop Backward": "快速后退",
-    "Hop Forward": "快速前进",
+    "Focus Next Task": "聚焦下一任务",
+    "Focus on the closed task column": "聚焦到已关闭任务列",
+    "Focus on the open task column": "聚焦到开放任务列",
+    "Focus Open Task": "聚焦开放任务",
+    "Focus Previous Task": "聚焦上一任务",
+    "Great news!": "好消息！",
+    "Hotkeys imported successfully": "快捷键导入成功",
+    "Hotkeys JSON": "快捷键 JSON",
+    "How did you hear about Label Studio?": "你是如何了解到 Label Studio 的？",
+    "Human Signal Logo": "Human Signal 标志",
     "Image Gallery Navigation": "图库导航",
-    "Key Point Tool": "关键点工具",
-    "Last Frame": "最后一帧",
-    "Lock Region": "锁定区域",
-    "Magic Wand": "魔棒工具",
-    "Move Tool": "移动工具",
-    "Next Image": "下一张图片",
-    "Next Keyframe": "下一个关键帧",
-    "Next Phrase": "下一个短语",
-    "Next Region in Phrase": "短语中的下一区域",
-    "Pan Image": "平移图像",
+    "Import": "导入",
+    "Import Error": "导入错误",
+    "Import Hotkeys": "导入快捷键",
+    "Keep me logged in this browser": "在此浏览器中保持登录",
+    "Label Studio": "Label Studio",
+    "Label Studio Logo": "Label Studio 标志",
+    "Last Name": "姓",
+    "Learn more": "了解更多",
+    "Log in": "登录",
+    "Manage your access tokens securely": "安全管理你的访问令牌",
+    "Membership Info": "成员信息",
+    "Minimize or expand bulk actions sidebar": "最小化或展开批量操作侧边栏",
+    "Move focus to the first focusable region": "将焦点移动到第一个可聚焦区域",
+    "Move focus to the next task": "将焦点移动到下一任务",
+    "Move focus to the previous task": "将焦点移动到上一任务",
+    "My Account": "我的账户",
+    "New Auth Token": "新认证令牌",
     "Paragraph Navigation": "段落导航",
-    "Polygon Tool": "多边形工具",
-    "Previous Image": "上一张图片",
-    "Previous Keyframe": "上一个关键帧",
-    "Previous Phrase": "上一个短语",
-    "Previous Region in Phrase": "短语中的上一区域",
-    "Rectangle Tool": "矩形工具",
+    "Personal Access Token": "个人访问令牌",
+    "Personal Info": "个人信息",
+    "Please enter JSON data to import": "请输入要导入的 JSON 数据",
     "Redo": "重做",
     "Redo previously undone action": "重做刚刚撤销的操作",
     "Region Management": "区域管理",
     "Remove all regions": "删除所有区域",
-    "Rewind 1 Second": "回退 1 秒",
-    "Rotate Left": "向左旋转",
-    "Rotate Right": "向右旋转",
-    "Seek Backward": "向后跳转",
-    "Seek Forward": "向前跳转",
-    "Shortcuts for controlling audio playback and navigation": "控制音频播放与导航的快捷方式",
-    "Shortcuts for controlling video playback and navigation": "控制视频播放与导航的快捷方式",
-    "Show or hide all regions": "显示或隐藏所有区域",
-    "Shrink Left": "向左收缩",
-    "Shrink Left (Large)": "大幅向左收缩",
-    "Shrink Right": "向右收缩",
-    "Shrink Right (Large)": "大幅向右收缩",
+    "Reset Hotkeys to Defaults?": "将快捷键重置为默认值？",
+    "Reset to Defaults": "恢复默认",
+    "Revoke Token": "吊销令牌",
+    "Save": "保存",
+    "See all templates": "查看所有模板",
+    "Select all text in current phrase and create annotation": "选择当前短语中的全部文本并创建标注",
+    "Select an option": "选择一个选项",
+    "Shortcuts for common annotation tasks like submit, skip, undo and redo": "用于提交、跳过、撤销和重做等常见标注任务的快捷键",
+    "Shortcuts for controlling audio playback and navigation": "用于控制音频播放与导航的快捷键",
+    "Shortcuts for controlling tools panel when labeling images": "标注图像时控制工具面板的快捷键",
+    "Shortcuts for controlling video playback and navigation": "用于控制视频播放与导航的快捷键",
+    "Shortcuts for creating, selecting and manipulating annotation regions": "用于创建、选择和操作标注区域的快捷键",
+    "Shortcuts for manipulating time series data regions": "操作时间序列数据区域的快捷键",
+    "Shortcuts for navigating and managing tasks in Project's Data Manager": "在项目数据管理中导航和管理任务的快捷键",
+    "Shortcuts for navigating between images in multi-image tasks": "用于在多图任务中切换图像的快捷键",
+    "Shortcuts for navigating phrases and regions in paragraph/dialogue view": "用于在段落/对话视图中切换短语和区域的快捷键",
+    "Sign up": "注册",
+    "Skip Task": "跳过任务",
+    "Skip the current task": "跳过当前任务",
+    "Submit Annotation": "提交标注",
+    "Submit the current annotation": "提交当前标注",
+    "There's an Enterprise version of Label Studio packed with more features and automation to label data faster while ensuring the highest quality.": "Label Studio 企业版提供了更多功能和自动化能力，可更快地标注数据并确保最高质量。",
     "Time Series Controls": "时间序列控制",
-    "Toggle All Region Visibility": "切换所有区域可见性",
-    "Toggle Bulk Sidebar": "切换批量操作侧边栏",
-    "Toggle Region Visibility": "切换区域可见性",
+    "Toggle Bulk Sidebar": "切换批量侧边栏",
+    "Token Expiry Date": "令牌过期时间",
     "Undo": "撤销",
     "Undo last action": "撤销上一步操作",
-    "Video Controls": "视频控制",
-    "View next image": "视图下一张图片",
-    "View previous image": "视图上一张图片",
-    "Zoom In": "放大",
-    "Zoom Out": "缩小",
-    "Zoom to 100%": "缩放至 100%",
-    "Zoom to Fit": "缩放至适应",
-    "Administrator": "管理员",
-    "Annotator": "标注员",
-    "Authentication required": "需要身份验证",
-    "Enable": "启用",
-    "Tools": "工具",
-    "Shortcuts for navigating phrases and regions in paragraph/dialogue view": "在段落/对话视图中切换短语和区域的快捷方式",
-    "Please enter JSON data to import": "请输入要导入的 JSON 数据",
-    "Beta": "测试版",
-    "Copy": "复制",
-    "Email": "邮箱",
-    "Log Out": "退出登录",
-    "Password": "密码"
+    "Video Controls": "视频控制"
   },
-  home: {
-    "Create Project": "创建项目",
-    "Import": "导入",
-    "Connect your cloud storage or upload files from your computer": "连接您的云存储或从计算机上传文件",
-    "Import data to get your project started": "导入数据以启动您的项目",
-    "Create new project": "创建新项目",
-    "Google Cloud Storage": "谷歌云存储",
-    "Import your data": "导入数据",
-    "No tasks available for review or labeling": "没有可供审查或标记的任务",
-    "Start labeling tasks": "开始标记任务",
-    "Azure Blob Storage": "Azure Blob 存储",
-    "Choose a dataset from your computer to get started": "从您的计算机中选择一个数据集以开始",
-    "Redis Storage": "Redis 存储",
-    "Tasks imported to this project will appear here": "导入到该项目的任务将显示在此处",
-    "Error occurred while loading data": "加载数据时发生错误",
-    "Invite Members": "邀请成员",
-    "Tasks you've labeled will appear here": "您标记的任务将显示在此处",
-    "Connect Cloud Storage": "连接云存储",
-    "Create your first project": "创建您的第一个项目",
-    "Failed to load data": "加载数据失败",
-    "Import Data": "导入数据",
-    "Label All Tasks": "标记所有任务",
-    "No data available": "无可用数据",
-    "Label Studio Version: Community": "Label Studio 版本：社区版",
-    "See docs on importing data": "查看导入数据文档",
-    "Let's get you started.": "让我们开始吧。",
-    "Recent Projects": "最近项目",
-    "View All": "查看全部",
-    "Welcome 👋": "欢迎 👋",
-    "Home": "首页",
+  "home": {
+    "* Create New Project *": "* 创建新 项目 *",
+    "* Import Project *": "* 导入项目 *",
     "API Documentation": "API 文档",
-    "Slack Community": "Slack 社区",
-    "No tasks available": "没有可用的任务",
-    "Unable to connect to the server. Please check your internet connection.": "无法连接到服务器。请检查您的互联网连接。",
-    "No tasks found": "没有找到任务",
-    "Tasks assigned to you will appear here": "分配给您的任务将显示在此处",
-    "Tasks will appear here when they become available": "任务可用时将显示在此处",
+    "Azure Blob Storage": "Azure Blob 存储",
+    "Choose a dataset from your computer to get started": "从你的电脑选择一个数据集以开始使用",
+    "Connect Cloud Storage": "连接云存储",
+    "Connect your cloud storage or upload files from your computer": "连接你的云存储或从电脑上传文件",
+    "Create new project": "创建新 项目",
+    "Create Project": "创建项目",
+    "Create your first project": "创建你的第一个项目",
     "Documentation": "文档",
+    "Error occurred while loading data": "加载数据时发生错误",
+    "Failed to load data": "加载数据失败",
+    "Google Cloud Storage": "Google Cloud Storage",
+    "Home": "首页",
+    "Import": "导入",
+    "Import Data": "导入数据",
+    "Import data to get your project started": "导入数据以开始你的项目",
+    "Import your data": "导入你的数据",
+    "Import your data and set up the labeling interface to start annotating": "导入数据并设置标注界面以开始标注",
+    "Invite Members": "邀请成员",
+    "Label All Tasks": "标注所有任务",
+    "Label Studio Version: Community": "Label Studio 版本：社区版",
+    "LabelStud.io Blog": "LabelStud.io 博客",
     "Learn, explore and get help": "学习、探索并获取帮助",
+    "Let's get you started.": "让我们开始吧。",
+    "No data available": "没有可用数据",
+    "No tasks available for review or labeling": "没有可供审核或标注的任务",
+    "Recent Projects": "最近项目",
+    "Redis Storage": "Redis 存储",
     "Release Notes": "发布说明",
     "Resources": "资源",
-    "Import your data and set up the labeling interface to start annotating": "导入数据并设置标签界面以开始注释"
+    "See docs on importing data": "查看导入数据文档",
+    "Slack Community": "Slack 社区",
+    "Start labeling tasks": "开始标注任务",
+    "Tasks imported to this project will appear here": "导入到此项目的任务将显示在这里",
+    "Tasks you've labeled will appear here": "你已标注的任务将显示在这里",
+    "View All": "查看全部",
+    "Welcome 👋": "欢迎 👋"
   },
-  projects: {
-    "Projects": "项目",
-    "Optional description of your project": "项目描述（可选）",
-    "Save and Leave": "保存并离开",
-    "Settings": "设置",
-    "Create Project": "创建项目",
-    "Project Name": "项目名称",
-    "Cloud Storage": "云存储",
-    "Data Import": "数据导入",
-    "Learn more": "了解更多",
-    "Workspace": "工作区",
-    "Labeling Setup": "标注设置",
-    "Create new project": "创建新项目",
-    "Import data": "导入数据",
-    "Label": "标注",
-    "Create custom template": "创建自定义模板",
-    "Cloud Storage documentation (opens in a new tab)": "云存储文档（在新选项卡中打开）",
-    "Add URL": "添加 URL",
-    "Cancel project creation": "取消项目创建",
-    "delete label": "删除标签",
-    "Project options": "项目选项",
-    "Video format support depends on your browser. Click to learn more.": "视频格式支持取决于您的浏览器。点击了解更多。",
-    "You have unsaved changes.": "您有未保存的更改。",
-    "Add filter for long list of labels": "添加长标签列表过滤器",
+  "projects": {
+    ", import:": ", 导入:",
+    "Add filter for long list of labels": "为长标签列表添加筛选",
     "Add label names": "添加标签名称",
+    "Add labels": "添加标签",
+    "Add URL": "添加 URL",
+    "Audio/Speech Processing": "音频/语音处理",
+    "Browse templates": "浏览模板",
+    "Cancel": "取消",
+    "Cancel import": "取消导入",
+    "Cancel project creation": "取消项目创建",
+    "Chat": "聊天",
+    "Cloud Storage": "云存储",
+    "Cloud Storage documentation (opens in a new tab)": "云存储文档（在新标签页中打开）",
+    "Code": "代码",
+    "Computer Vision": "计算机视觉",
+    "Configure data": "配置数据",
+    "Configure settings": "配置设置",
+    "Create": "创建",
+    "Create custom template": "创建自定义模板",
+    "Create new project": "创建新 项目",
+    "Create one and start labeling your data.": "创建一个并开始标注你的数据。",
+    "Create Project": "创建项目",
+    "Custom template": "自定义模板",
+    "Data Import": "数据导入",
+    "Dataset URL": "数据集 URL",
+    "delete label": "删除 label",
+    "Display labels:": "显示标签：",
+    "Enterprise feature - Available in Label Studio Enterprise": "企业版功能，Label Studio 企业版可用",
+    "Finish import": "完成导入",
+    "Generative AI": "生成式 AI",
+    "Heidi doesn't see any projects here!": "Heidi 在这里没有看到任何项目！",
+    "History": "历史",
+    "Image Classification": "图像分类",
+    "Import data": "导入数据",
+    "import preannotated data": "导入预标注数据",
+    "Info": "信息",
+    "Inventory Tracking": "库存跟踪",
+    "Label": "标签",
+    "Labeling Setup": "标注设置",
+    "Labels": "标签",
+    "Learn more": "了解更多",
+    "Learn more about video format support (opens in a new tab)": "了解更多视频格式支持信息（在新标签页中打开）",
+    "Manual": "手动",
+    "Medical Image Classification with Bounding Boxes": "带边界框的医学图像分类",
+    "Multi-image labeling documentation (opens in a new tab)": "多图标注文档（在新标签页中打开）",
+    "Named entity recognition": "命名实体识别",
+    "New project": "新项目",
+    "No sample task data available.": "没有可用的示例任务数据。",
+    "Optical Character Recognition": "光学字符识别",
+    "Optional description of your project": "项目可选描述",
+    "Organization": "组织",
+    "Polygon labeling": "多边形标注",
+    "Preview": "预览",
+    "Project Name": "项目名称",
+    "Project options": "项目选项",
+    "Projects": "项目",
+    "Relations": "关系",
+    "Sample config to label with bboxes": "用于框选标注的示例配置",
     "Save": "保存",
+    "Save and Leave": "保存并离开",
     "Save changes": "保存更改",
     "Save configuration": "保存配置",
-    "Add labels": "添加标签",
-    "Cancel": "取消",
-    "Display labels:": "显示标签：",
-    "Labels": "标签",
-    "Multi-image labeling documentation (opens in a new tab)": "多图像标签文档（在新选项卡中打开）",
-    "Select label and click on image to start": "选择标签并单击图像开始",
-    "Would you like to save them before leaving?": "你想在离开之前拯救他们吗？",
-    "No sample task data available.": "没有可用的示例任务数据。",
-    "Template parsing error:": "模板解析错误：",
-    "Can't prepare sample data.": "无法准备样本数据。",
-    "Create": "创建",
-    "Custom template": "自定义模板",
-    "New project": "新建项目",
-    "Imported file is too big": "导入的文件太大",
-    "Images": "图片",
+    "Saved!": "已保存！",
+    "See the documentation to contribute a template.": "查看文档以贡献模板。",
     "Select an option": "选择一个选项",
-    "Organization": "组织",
-    "Browse templates": "浏览模板",
-    "Select text by words": "按单词选择文本",
-    "Audio": "音频",
-    "Named entity recognition": "命名实体识别",
-    "Computer Vision": "计算机视觉",
-    "-\", label:": "-“， 标签：",
-    "Cancel import": "取消导入",
-    "Finish import": "完成导入",
-    "Community": "社区版"
-  },
-  import_export: {
-    "Export data": "导出数据",
-    "Export": "导出",
-    "You can export dataset in one of the following formats:": "您可以使用以下格式之一导出数据集：",
-    "Copy command": "复制命令",
-    "Files are being prepared. It might take long time.": "文件正在准备中，可能需要较长时间。",
-    "Read more about supported export formats in the Documentation.": "在文档中阅读有关支持的导出格式的更多信息。",
-    "Enterprise": "企业版"
-  },
-  data_manager: {
+    "Select label and click on image to start": "选择标签并点击图像开始",
+    "Sequential sampling": "顺序采样",
     "Settings": "设置",
-    "Save": "保存",
-    "Data": "数据",
-    "You have unsaved changes": "您有未保存的更改",
-    "Labeling": "标注",
-    "Back to projects": "返回项目列表",
-    "Total tasks in the project": "项目总任务",
-    "Grid settings": "网格设置",
-    "Refresh data": "刷新数据",
-    "Error occurred when loading data": "加载数据时发生错误",
-    "Label Studio Frontend doesn't exist on the page": "页面上不存在 Label Studio 前端",
-    "Labeling Instructions": "标注说明",
-    "Task Data": "任务数据",
-    "Annotation overlap has been reached for this task. Your draft is preserved but cannot be submitted.": "此任务已达到注释重叠。您的草稿已保留，但无法提交。",
-    "Before you can annotate the data, set up labeling configuration": "在注释数据之前，请先设置标签配置",
-    "Delete selected": "删除所选内容",
-    "Next Task": "下一步任务",
-    "Project ID:": "项目编号：",
-    "importFilters: failed to create filter for": "importFilters：未能创建过滤器",
-    "label all": "标记全部",
-    "re in label stream and there": "re 在标签流中并且在那里",
-    "Annotation is not saved": "注释未保存",
-    "Annotation saved successfully": "注释保存成​​功",
-    "CancelledError": "取消错误",
-    "Error fetching actions:": "获取操作时出错：",
-    "Number of submitted annotations. Table shows only submitted results, not current drafts.": "提交的注释数量。表格仅显示提交的结果，而不显示当前的草稿。",
-    "Overall agreement over all submitted annotations": "对所有提交的注释达成总体一致",
-    "t reload the task on error to avoid losing the user": "错误时不要重新加载任务以避免失去用户",
-    "Back": "返回",
-    "Draft saved successfully": "草稿保存成功",
-    "Instructions": "说明",
-    "Filters": "筛选",
-    "View Task Source": "查看任务源",
-    "Copy filters": "复制过滤器",
-    "Focus previous task": "聚焦上一个任务",
-    "Copy task ID": "复制任务 ID",
-    "Default": "默认",
-    "Filtered tasks": "过滤任务",
-    "All Fields": "所有字段",
-    "Can't find task": "找不到任务",
-    "Tasks Actions": "任务操作",
-    "You're almost there!": "你快到了！",
-    "Comfortable density": "舒适密度",
-    "Compact density": "紧凑密度",
-    "Open New Tab": "打开新标签页",
-    "Failed to copy filters:": "复制过滤器失败：",
-    "Filter": "筛选",
-    "Image": "图片",
-    "List": "列表",
-    "Tab name": "标签页名称",
-    "Tab options": "标签页选项",
-    "Failed to copy to clipboard": "无法复制到剪贴板",
-    "Grid view": "网格视图",
-    "List view": "列表视图",
-    "Order by": "排序方式",
-    "Switch to list view": "切换到列表视图",
-    "Task cannot be skipped: allow_skip is false and user lacks manager role": "任务无法跳过：allow_skip 为 false 并且用户缺少管理员角色",
-    "Task ID:": "任务编号：",
-    "Columns": "列",
-    "Copy": "复制",
-    "Copy (2)": "副本（2）",
-    "Copy JSON": "复制 JSON",
-    "No content to copy": "没有可复制的内容",
-    "Select value": "选择值",
-    "Task cannot be skipped": "任务无法跳过",
-    "Task ID must be provided": "必须提供任务 ID",
-    "Task ID not found": "未找到任务 ID",
-    "Task is not skipped": "任务不被跳过",
-    "Task skipped successfully": "任务已成功跳过",
-    "This task cannot be skipped": "该任务无法跳过",
-    "Unknown": "未知",
-    "Your action is being processed in the background.": "您的操作正在后台处理。",
-    "Annotator": "标注员",
-    "Cannot read clipboard. Please allow clipboard access and try again.": "无法读取剪贴板。请允许剪贴板访问并重试。",
-    "SelectOptions": "选择选项",
-    "task selected": "已选择任务",
-    "Sort descending": "降序排序",
-    "Toggle open": "切换打开",
-    "View": "视图",
-    "all selected": "全部所选",
-    "You must upgrade your plan to import data": "您必须升级您的计划才能导入数据",
-    "Agreement": "一致性",
-    "Cancel": "取消",
-    "Data Manager": "数据管理"
-  },
-  labeling: {
-    "Learn more": "了解更多",
-    "Delete": "删除",
-    "Select label and click the image to start": "选择标签并单击图像开始",
-    "Add any notes or edge cases...": "添加任何注释或边缘情况...",
-    "Save": "保存",
-    "Add a comment (optional)": "添加评论（可选）",
-    "Labeling Instructions": "标注说明",
-    "Labeling Config": "标注配置",
-    "created,": "已创建,",
-    "Labeling Interface": "标注界面",
-    "Organization": "组织",
-    "Create Annotation": "创建标注",
-    "Delete selected annotation": "删除选定的注释",
-    "Save annotation settings": "保存注释设置",
-    "Create new annotation": "创建新注释",
-    "Delete selected region": "删除选定区域",
-    "Create Relation": "创建关系",
-    "Delete annotation?": "删除注释？",
-    "Delete Relation": "删除关系",
-    "Delete Annotation": "删除标注",
-    "Select labels": "选择标签",
-    "Use predictions to prelabel tasks": "使用预测来预先标记任务",
-    "x\", label:": "x”，标签：",
-    "Annotation Settings": "标注设置",
-    "Delete Predictions": "删除预测",
-    "Delete Region": "删除区域",
-    "Type your answer here...": "在此输入您的答案...",
-    "y\", label:": "y”，标签：",
-    "Enter description here...": "在此输入描述...",
-    "Label 1": "标签1",
-    "Please confirm you want to delete this annotation": "请确认您要删除此注释",
-    "Region": "区域",
-    "Regions": "区域",
-    "Chatbot Model Assessment": "聊天机器人模型评估",
-    "Create relations between regions": "创建区域之间的关系",
-    "Human Preference collection for RLHF": "RLHF 的人类偏好集合",
-    "Labeling Interface Settings": "标签界面设置",
-    "LLM Ranker": "法学硕士排名",
-    "Select a text span answering the following question:": "选择回答以下问题的文本范围：",
-    "Select document related to the query:": "选择与查询相关的文档：",
-    "Select predictable region spans in time series:": "选择时间序列中的可预测区域跨度：",
-    "Choose similar images:": "选择相似的图像：",
-    "Created": "已创建",
-    "Dont you hate that?": "你不讨厌这样吗？",
-    "Predictions Settings": "预测设置",
-    "Review deleted": "评论已删除",
-    "Select text to correct": "选择要更正的文本",
-    "There was an error saving your draft": "保存草稿时出错",
-    "What's your opinion on pineapple pizza?": "您对菠萝披萨有何看法？",
-    "CancelledError": "取消错误",
-    "Choose response": "选择回复",
-    "Choose text sentiment": "选择文字情感",
-    "Error checking pixel transparency:": "检查像素透明度时出错：",
-    "You must provide the response to the prompt": "您必须提供对提示的响应",
-    "Cancel": "取消",
-    "Draft saved successfully": "草稿保存成功",
-    "Predictions List": "预测列表",
-    "Breast Cancer Mammogram Classification": "乳腺癌乳房X光检查分类",
-    "image1,image2": "图片1,图片2",
-    "Annotation": "标注",
-    "Predictions": "预测",
-    "Start frame": "起始帧",
-    "Copy Annotation ID": "复制注释 ID",
-    "Copy Annotation Link": "复制注释链接",
-    "Copy Region Link": "复制区域链接",
-    "Hide all": "隐藏全部",
-    "Show all": "显示全部",
-    "Annotation ID": "标注 ID",
-    "Annotations List Toggle": "标注列表切换",
-    "Region options": "区域选项",
-    "View all annotations": "查看全部标注",
-    "Hide": "隐藏",
-    "Show": "显示",
-    "Toggle Visibility": "切换可见性",
-    "Please select model or predictions": "请选择模型或预测",
-    "Select a region": "选择地区",
-    "This action cannot be undone. Are you sure?": "此操作无法撤消。你确定吗？",
-    "Enterprise": "企业版",
-    "Segment start must be greater than 0": "段开始必须大于 0",
-    "Unknown": "未知",
-    "Model": "模型"
-  },
-  settings: {
-    "Settings": "设置",
-    "Cloud Storage": "云存储",
-    "Delete Project": "删除项目",
-    "Learn more": "了解更多",
-    "Project Name": "项目名称",
-    "Data Manager": "数据管理",
+    "Simplify project management by organizing projects into workspaces.": "通过将项目组织到工作区中来简化项目管理。",
+    "Template parsing error:": "模板解析错误：",
+    "This template requires more data then you have for now": "此模板当前需要比你现有更多的数据",
+    "Uncertainty sampling": "不确定性采样",
+    "Video format support depends on your browser. Click to learn more.": "视频格式支持取决于你的浏览器。点击了解更多。",
+    "Videos": "视频",
+    "Visual": "可视化",
+    "Visual Question Answering": "视觉问答",
     "Workspace": "工作区",
-    "Hotkeys": "快捷键",
-    "Add Source Storage": "添加源存储",
-    "Add Target Storage": "添加目标存储",
-    "Google Cloud Storage": "谷歌云存储",
-    "Keep label selected after creating a region": "创建区域后保持标签处于选中状态",
-    "Allows continuous region creation using the selected label": "允许使用所选标​​签创建连续区域",
-    "Azure Blob Storage": "Azure Blob 存储",
-    "Configure your Google Cloud Storage connection with all required Label Studio settings": "使用所有必需的 Label Studio 设置配置您的 Google Cloud Storage 连接",
-    "Configure your local file storage connection with all required Label Studio settings": "使用所有必需的 Label Studio 设置配置本地文件存储连接",
-    "Configure your Redis storage connection with all required Label Studio settings": "使用所有必需的 Label Studio 设置配置 Redis 存储连接",
-    "Redis Storage": "Redis 存储",
-    "Save machine learning settings": "保存机器学习设置",
-    "Use cloud or database storage as the source for your labeling tasks or the target of your completed annotations.": "使用云存储或数据库存储作为标注任务的数据源，或作为已完成标注的目标存储。",
-    "Configure your AWS S3 connection with all required Label Studio settings": "使用所有必需的 Label Studio 设置配置您的 AWS S3 连接",
-    "Configure your Azure Blob Storage connection with all required Label Studio settings": "使用所有必需的 Label Studio 设置配置 Azure Blob 存储连接",
-    "Display region label names": "显示区域标签名称",
-    "Save general settings": "保存常规设置",
-    "Add your first cloud storage": "添加您的第一个云存储",
-    "Available on Label Studio Enterprise": "可在 Label Studio Enterprise 上使用",
-    "Learn more about cloud storage (opens in new window)": "了解有关云存储的更多信息（在新窗口中打开）",
-    "Learn more about cloud storage troubleshooting": "了解有关云存储故障排除的更多信息",
+    "Would you like to save them before leaving?": "你想在离开前保存吗？",
+    "You have unsaved changes.": "你有未保存的更改。",
+    "Your labeling configuration is empty. It is required to label your data.": "你的标注配置为空。标注数据前必须先完成配置。"
+  },
+  "import_export": {
+    "Can't find an export format?": "找不到导出格式？",
+    "Copied": "已复制",
+    "Copied!": "已复制！",
+    "Export": "导出",
+    "Export data": "导出数据",
+    "Label Studio Enterprise": "Label Studio 企业版",
+    "Read more about supported export formats in the Documentation.": "在文档中了解更多支持的导出格式。",
+    "You can export dataset in one of the following formats:": "你可以以下列格式之一导出数据集："
+  },
+  "data_manager": {
+    "Back to projects": "返回项目",
+    "Before you can annotate the data, set up labeling configuration": "在标注数据前，请先设置标注配置",
+    "Check your storage settings. You may need to recreate this dataset": "请检查你的存储设置。你可能需要重新创建此数据集",
+    "Columns": "列",
+    "Copied!": "已复制！",
+    "Data": "数据",
+    "Default": "默认",
+    "Error occurred when loading data": "加载数据时发生错误",
+    "Filters": "筛选",
+    "Focus previous task": "聚焦上一任务",
+    "Grid settings": "网格设置",
+    "label all": "label 所有",
+    "Label Tasks As Displayed": "按显示顺序标注任务",
+    "Labeling": "标注",
+    "Labeling Instructions": "标注说明",
+    "Order by": "排序方式",
+    "Project has been deleted or not yet created.": "项目已被删除或尚未创建。",
+    "Project ID:": "项目 ID:",
+    "Project was deleted or not yet created": "项目已被删除或尚未创建",
+    "Refresh data": "刷新数据",
     "Save": "保存",
-    "Configure your Databricks Unity Catalog Volumes connection with all required settings (proxy only)": "使用所有必需的设置配置 Databricks Unity Catalog Volumes 连接（仅限代理）",
-    "Labeling Interface Settings": "标签界面设置",
-    "Save machine learning form": "保存机器学习表格",
+    "Saved!": "已保存！",
+    "Settings": "设置",
+    "Task Data": "任务数据",
+    "Total tasks in the project": "项目中的任务总数",
+    "You have unsaved changes": "你有未保存的更改",
+    "You must upgrade your plan to import data": "你必须升级套餐才能导入数据"
+  },
+  "labeling": {
+    "Add any notes or edge cases...": "添加任何备注或边界情况...",
+    "Annotation": "标注",
+    "Annotation Settings": "标注设置",
+    "Cancel": "取消",
+    "Delete": "删除",
+    "Delete selected region": "删除所选区域",
+    "Enable and select which set of predictions to use for prelabeling.": "启用并选择要用于预标注的那组预测结果。",
+    "Enterprise": "企业版",
+    "Incorrect Amount": "金额错误",
+    "Incorrect Name": "名称错误",
+    "Labeling Instructions": "标注说明",
+    "Labeling Interface": "标注界面",
+    "Labeling Interface Settings": "标注界面设置",
+    "Learn more": "了解更多",
+    "Model": "模型",
+    "No model or predictions available": "没有可用的模型或预测",
+    "No predictions uploaded yet": "尚未上传任何预测结果",
+    "Organization": "组织",
+    "Predictions": "预测",
+    "Predictions Settings": "预测设置",
+    "Prelabeling": "预标注",
+    "Regions": "区域",
+    "Save": "保存",
+    "Saved!": "已保存！",
+    "Select label and click the image to start": "选择标签并点击图像开始",
+    "Select text to correct": "选择要纠正的文本",
+    "Select which predictions or which model you want to use:": "选择你要使用的预测结果或模型：",
+    "Show before labeling": "标注前显示",
+    "The instruction field supports HTML markup and it allows use of images, iframes (pdf).": "说明字段支持 HTML 标记，并允许使用图片、iframe（PDF）。",
+    "Typo": "错别字",
+    "Use predictions to prelabel tasks": "使用预测结果对任务进行预标注",
+    "Write instructions to help users complete labeling tasks.": "编写说明以帮助用户完成标注任务。"
+  },
+  "settings": {
+    "Account Key": "账户密钥",
+    "Account Name": "账户名称",
+    "Actions": "操作",
+    "Add machine learning model": "添加机器学习模型",
+    "Add Source Storage": "添加源存储",
+    "Add storage": "添加存储",
+    "Add Target Storage": "添加目标存储",
+    "Add your first cloud storage": "添加你的第一个云存储",
+    "Allows continuous region creation using the selected label": "允许使用所选标签连续创建区域",
+    "Amazon S3 with IAM Role is available in Label Studio Enterprise.": "带 IAM Role 的 Amazon S3 在 Label Studio 企业版中可用。",
+    "Annotation settings": "标注设置",
+    "Automatically selects newly created regions": "自动选择新创建的区域",
+    "Available on Label Studio Enterprise": "Label Studio 企业版可用",
+    "Azure Blob Storage": "Azure Blob 存储",
+    "Azure Blob Storage with Service Principal is available in Label Studio Enterprise.": "带 Service Principal 的 Azure Blob 存储在 Label Studio 企业版中可用。",
+    "Cancel": "取消",
+    "Cloud Storage": "云存储",
+    "Cloud Storage Settings": "云存储设置",
+    "Configure your AWS S3 connection with all required Label Studio settings": "使用所有必需的 Label Studio 设置配置你的 AWS S3 连接",
+    "Configure your Azure Blob Storage connection using Service Principal authentication for enhanced security (proxy only)": "使用 Service Principal 身份验证配置你的 Azure Blob 存储连接以增强安全性（仅代理）",
+    "Configure your Azure Blob Storage connection with all required Label Studio settings": "使用所有必需的 Label Studio 设置配置你的 Azure Blob 存储连接",
+    "Configure your Databricks Unity Catalog Volumes connection with all required settings (proxy only)": "使用所有必需设置配置你的 Databricks Unity Catalog Volumes 连接（仅代理）",
+    "Configure your Google Cloud Storage connection with all required Label Studio settings": "使用所有必需的 Label Studio 设置配置你的 Google Cloud Storage 连接",
+    "Configure your Google Cloud Storage connection with Workload Identity Federation authentication (proxy only)": "使用 Workload Identity Federation 身份验证配置你的 Google Cloud Storage 连接（仅代理）",
+    "Configure your local file storage connection with all required Label Studio settings": "使用所有必需的 Label Studio 设置配置你的本地文件存储连接",
+    "Configure your Redis storage connection with all required Label Studio settings": "使用所有必需的 Label Studio 设置配置你的 Redis 存储连接",
+    "Connect Model": "连接模型",
+    "Copied!": "已复制！",
+    "Danger Zone": "危险区域",
+    "Data Manager": "数据管理",
+    "Database Number (db)": "数据库编号（db）",
+    "Databricks Files (UC Volumes) is available in Label Studio Enterprise.": "Databricks Files（UC Volumes）在 Label Studio 企业版中可用。",
+    "Delete ML Backend": "删除机器学习后端",
+    "Delete Project": "删除项目",
+    "Deleting a project removes all tasks, annotations, and project data from the database.": "删除项目会从数据库中移除所有任务、标注和项目数据。",
+    "Deleting storage": "正在删除存储",
+    "Display region label names": "显示区域标签名称",
+    "Drop All Tabs": "清空所有标签页",
+    "Edit": "编辑",
+    "Enable increased token authentication security": "启用增强的令牌认证安全性",
+    "Enable labeling hotkeys": "启用标注快捷键",
+    "Enable legacy access tokens, these do not expire": "启用旧版访问令牌，这些令牌不会过期",
+    "Enables quick selection of labels using hotkeys": "支持使用快捷键快速选择标签",
+    "Enterprise Feature": "企业版功能",
+    "Error loading settings.": "加载设置时出错。",
+    "General": "常规",
+    "General Settings": "常规设置",
+    "Google Cloud Storage": "Google Cloud Storage",
+    "Google Cloud Storage with Workload Identity Federation is available in Label Studio Enterprise.": "带 Workload Identity Federation 的 Google Cloud Storage 在 Label Studio 企业版中可用。",
+    "Google Project ID": "Google 项目 ID",
+    "Hotkeys": "快捷键",
+    "If the Data Manager is not loading, dropping all Data Manager tabs can help.": "如果数据管理未加载，清空所有数据管理标签页可能会有所帮助。",
+    "Labeling hotkeys": "标注快捷键",
+    "Labeling Interface Settings": "标注界面设置",
+    "Learn more": "了解更多",
+    "Learn more about cloud storage (opens in new window)": "了解更多云存储信息（在新窗口中打开）",
+    "Learn more about cloud storage troubleshooting": "了解更多云存储故障排查信息",
+    "Learn more about machine learning models (opens in new window)": "了解更多机器学习模型（在新窗口中打开）",
+    "Legacy Tokens": "旧版令牌",
+    "Let's connect your first model": "让我们连接你的第一个模型",
+    "Local Storage documentation": "本地存储文档",
+    "Model": "模型",
+    "Model Settings": "模型设置",
+    "Name": "名称",
+    "Perform these actions at your own risk. Actions you take on this page can't be reverted. Make sure your data is backed up.": "执行这些操作需自行承担风险。你在此页面执行的操作无法撤销。请先确认你的数据已备份。",
+    "Personal Access Tokens": "个人访问令牌",
+    "Project Name": "项目名称",
+    "Redis Storage": "Redis 存储",
+    "Remember Selected Tool": "记住所选工具",
+    "Reset Cache": "重置缓存",
+    "Save": "保存",
+    "Save Changes": "保存更改",
+    "Save general settings": "保存常规设置",
+    "Save machine learning form": "保存机器学习表单",
+    "Save machine learning settings": "保存机器学习设置",
+    "Save storage settings": "保存存储设置",
+    "Saved!": "已保存！",
+    "Select an option": "选择一个选项",
+    "Session Token": "会话令牌",
+    "Session token (optional)": "会话令牌（可选）",
+    "Settings": "设置",
+    "Show hotkeys on labels": "在标签上显示快捷键",
+    "Show labels hotkey tooltips": "显示标签快捷键提示",
+    "Show labels inside the regions": "在区域内部显示标签",
+    "Show region labels": "显示区域标签",
+    "Simplify project management by organizing projects into workspaces.": "通过将项目组织到工作区中来简化项目管理。",
     "Source Cloud Storage": "源云存储",
+    "Start Training": "开始训练",
     "Storage options": "存储选项",
     "Storage Sync Error Log": "存储同步错误日志",
+    "Storage Type": "存储类型",
+    "Sync Storage": "同步存储",
     "Target Cloud Storage": "目标云存储",
-    "Configure your Google Cloud Storage connection with Workload Identity Federation authentication (proxy only)": "使用 Workload Identity Federation 身份验证配置您的 Google Cloud Storage 连接（仅限代理）",
-    "Delete ML Backend": "删除 ML 后端",
-    "Deleting storage": "删除存储",
-    "Enables quick selection of labels using hotkeys": "允许使用热键快速选择标签",
-    "Google Project ID": "谷歌项目 ID",
-    "Save storage settings": "保存存储设置",
-    "Your redis password": "你的redis密码",
-    "Your storage account key": "您的存储帐户密钥",
-    "Add machine learning model": "添加机器学习模型",
-    "Automatically selects newly created regions": "自动选择新创建的区域",
-    "Configure your Azure Blob Storage connection using Service Principal authentication for enhanced security (proxy only)": "使用服务主体身份验证配置 Azure Blob 存储连接以增强安全性（仅限代理）",
-    "Edit": "编辑",
-    "Enable labeling hotkeys": "启用标注快捷键",
-    "Labeling hotkeys": "标注快捷键",
-    "Remember Selected Tool": "记住选择的工具",
-    "Session token (optional)": "会话令牌（可选）",
-    "Time-to-Live (optional, Personal Access Token only)": "生存时间（可选，仅限个人访问令牌）",
-    "Account Name": "账户名称",
-    "Add storage": "添加存储",
-    "Annotation settings": "标注设置",
-    "Cloud Storage Settings": "云存储设置",
-    "Show region labels": "显示区域标签",
-    "Account Key": "账户密钥",
-    "Completed with errors: sync job completed but some tasks had validation errors": "已完成但有错误：同步作业已完成，但某些任务存在验证错误",
-    "Deleting a project removes all tasks, annotations, and project data from the database.": "删除项目将从数据库中删除所有任务、注释和项目数据。",
-    "General Settings": "常规设置",
-    "Project deleted successfully": "项目删除成功",
-    "Save Changes": "保存更改",
-    "Connect Model": "连接模型",
-    "Model Settings": "模型设置",
-    "Cancel": "取消",
-    "If the Data Manager is not loading, dropping all Data Manager tabs can help.": "如果数据管理器未加载，删除所有数据管理器选项卡会有所帮助。",
-    "Actions": "操作",
-    "Perform these actions at your own risk. Actions you take on this page can't be reverted. Make sure your data is backed up.": "执行以下操作需自行承担风险。此页面上的操作无法撤销。请确保您的数据已备份。",
-    "add new": "添加新建",
-    "Reset Cache may help in cases like if you are unable to modify the labeling configuration due to validation errors concerning existing labels, but you are confident that the labels don't exist. You can use this action to reset the cache and try again.": "如果您因为现有标签的校验错误而无法修改标注配置，但又确认这些标签实际上并不存在，重置缓存可能会有帮助。您可以使用此操作重置缓存后再试一次。",
-    "Danger Zone": "危险操作",
-    "Drop All Tabs": "关闭所有标签页",
-    "Reset Cache": "重置缓存",
-    "Select an option": "选择一个选项",
-    "General": "常规",
-    "Bucket prefix": "Bucket 前缀",
-    "Let's connect your first model": "让我们连接您的第一个模型",
-    "Persists the selected tool across tasks": "跨任务保留所选工具",
-    "Model": "模型",
-    "Select authentication method": "选择身份验证方法",
-    "Select region after creating it": "创建后选择区域",
-    "Select regions after creating": "创建后选择区域",
-    "Start model training on annotation submission": "在注释提交上开始模型训练",
-    "Tasks are chosen with uniform random": "任务是均匀随机选择的",
+    "Task Sampling": "任务采样",
+    "Tasks are chosen according to model uncertainty score (active learning mode).": "任务会根据模型不确定性分数进行选择（主动学习模式）。",
+    "Tasks are chosen with uniform random": "任务以均匀随机方式选择",
     "Tasks are ordered by Task ID": "任务按任务 ID 排序",
-    "Identify and reference specific lines of text in your document": "识别并引用文档中的特定文本行",
-    "Machine learning model options": "机器学习模型选项",
-    "Start Model Training": "开始模型训练",
-    "Name": "名称",
-    "Region Name": "区域名称",
-    "This action cannot be undone. Are you sure?": "此操作无法撤消。你确定吗？",
-    "Connect": "连接",
-    "Copy": "复制",
-    "Community": "社区版"
+    "The number of days, after creation, that the token will be valid for. After this time period a user will need to create a new access token": "令牌创建后可生效的天数。超过该时间后，用户需要重新创建新的访问令牌。",
+    "Tools": "工具",
+    "Uncertainty sampling": "不确定性采样",
+    "Use cloud or database storage as the source for your labeling tasks or the target of your completed annotations.": "使用云存储或数据库存储作为标注任务的数据源，或作为已完成标注的目标存储。",
+    "When pre-signed URLs are enabled, all data bypasses the platform and user browsers directly read data from storage": "启用预签名 URL 后，所有数据都绕过平台，用户浏览器将直接从存储读取数据",
+    "Workspace": "工作区",
+    "Your redis password": "你的 Redis 密码",
+    "Your storage account key": "你的存储账户密钥"
   },
-  storage: {
-    "Select an option": "选择一个选项",
-    "Save": "保存",
-    "Google Cloud Storage": "谷歌云存储",
+  "storage": {
     "Azure Blob Storage": "Azure Blob 存储",
-    "Previous": "上一步",
-    "Configure Connection": "配置连接",
-    "API context not available": "API 上下文不可用",
-    "Audio": "音频",
-    "Images": "图片",
-    "Tasks": "任务",
+    "Choose how to interpret your data from storage": "选择如何解析来自存储的数据",
+    "Choose your cloud storage provider": "选择你的云存储提供商",
+    "Configure Import Settings & Preview Data": "配置导入设置并预览数据",
+    "Files to import": "要导入的文件",
+    "Google Cloud Storage": "Google Cloud Storage",
+    "Import your data from cloud storage providers": "从云存储提供商导入你的数据",
+    "Save": "保存",
+    "Select an option": "选择一个选项",
     "Videos": "视频",
-    "Bucket Prefix": "Bucket 前缀",
-    "Bytes": "字节",
-    "Connection Verified": "连接已验证",
-    "Next": "下一步",
-    "Add storage": "添加存储"
+    "When pre-signed URLs are enabled, all data bypasses the platform and user browsers directly read data from storage": "启用预签名 URL 后，所有数据都绕过平台，用户浏览器将直接从存储读取数据"
   },
-  webhooks: {
-    "Webhooks": "Webhook 回调",
-    "Learn more": "了解更多",
-    "Delete Webhook": "删除 Webhook",
+  "webhooks": {
+    "Add Webhook": "添加 Webhook",
+    "Add your first webhook": "添加你的第一个 Webhook",
     "Cancel": "取消",
     "Delete": "删除",
-    "Add Webhook": "添加 Webhook",
-    "Add your first webhook": "添加您的第一个 Webhook",
-    "Add Header": "添加请求头",
-    "Save Changes": "保存更改",
-    "Webhooks Settings": "Webhook 回调设置",
+    "Delete Webhook": "删除 Webhook",
     "Edit": "编辑",
-    "Is Active": "已启用",
-    "Edit Webhook": "编辑 Webhook",
-    "New Webhook": "新建 Webhook",
-    "Headers": "请求头",
-    "Payload": "负载",
-    "Payload URL": "负载 URL"
-  },
-  organization: {
     "Learn more": "了解更多",
-    "API Tokens Settings": "API 令牌设置",
-    "Create a Model": "创建 a 模型",
-    "Created Projects": "已创建项目",
-    "Create Model": "创建模型",
-    "Add Members": "添加成员",
-    "Invite new member": "邀请新建成员",
-    "API Token Settings": "API 令牌设置",
-    "Show API token settings": "显示 API 令牌设置",
-    "Invite members": "邀请成员",
-    "Create new model": "创建新模型",
-    "API Token settings saved": "已保存 API 令牌设置",
-    "Organization": "组织",
-    "Close user details": "关闭用户详情"
+    "New Webhook": "新 Webhook",
+    "Save Changes": "保存更改",
+    "Webhooks": "网络钩子",
+    "Webhooks Settings": "网络钩子设置"
   },
-  templates: {
-    "Structured Data Parsing": "结构化数据解析",
+  "organization": {
+    "Add Members": "添加成员",
+    "API Token Settings": "API 令牌设置",
+    "API Tokens Settings": "API 令牌设置",
+    "Copied!": "已复制！",
+    "Create a Model": "创建模型",
+    "Email": "电子邮箱",
+    "Invite members": "邀请成员",
+    "Last Activity": "最后活动时间",
+    "Learn more": "了解更多",
+    "Organization": "组织",
+    "People": "成员"
+  },
+  "templates": {
+    "Activity Recognition": "活动识别",
     "ASR Hypotheses Selection": "ASR 假设选择",
-    "Named Entity Recognition": "命名实体识别",
-    "OCR Labeling for PDFs": "PDF 的 OCR 标签",
     "Automatic Speech Recognition": "自动语音识别",
-    "Automatic Speech Recognition using Segments": "使用分段的自动语音识别",
-    "Breast Cancer Mammogram Classification": "乳腺癌乳房X光检查分类",
-    "Change Point Detection": "变化点检测",
-    "Chatbot Model Assessment": "聊天机器人模型评估",
-    "Conversational Analysis": "会话分析",
-    "Coreference Resolution & Entity Linking": "共指解析和实体链接",
-    "Evaluate Production Conversations for RLHF": "评估 RLHF 的生产对话",
-    "HTML Entity Recognition": "HTML实体识别",
-    "HTML NER Tagging": "HTML NER 标记",
-    "Human Preference collection for RLHF": "RLHF 的人类偏好集合",
-    "Intent Classification": "意图分类",
-    "Intent Classification and Slot Filling": "意图分类和槽位填充",
-    "LLM Ranker": "法学硕士排名",
-    "LLM Response Grading": "LLM 反应分级",
-    "Medical Image Classification with Bounding Boxes": "使用边界框进行医学图像分类",
-    "NER Tagging for Invoices (BIO Format)": "发票的 NER 标记（BIO 格式）",
-    "Object Detection with Bounding Boxes": "使用边界框进行物体检测",
-    "Optical Character Recognition": "光学字符识别",
-    "Outliers & Anomaly Detection": "异常值和异常检测",
-    "Pairwise classification": "成对分类",
-    "Pairwise regression": "成对回归",
-    "PDF Classification": "PDF分类",
-    "Search Page Ranking": "搜索页面排名",
-    "Semantic Segmentation with Masks": "使用掩码进行语义分割",
-    "Semantic Segmentation with Polygons": "多边形语义分割",
-    "Signal Quality Detection": "信号质量检测",
-    "Sound Event Detection": "声音事件检测",
-    "Speaker Segmentation": "说话人分割",
-    "Speech Transcription": "语音转写",
-    "Taxonomy": "分类学",
-    "Time Series Forecasting": "时间序列预测",
-    "Video Frame Classification": "视频帧分类",
-    "Video Object Tracking": "视频对象跟踪",
-    "Video Timeline Segmentation": "视频时间线分割",
-    "Visual Question Answering": "视觉问答",
-    "Light": "浅色",
-    "Here’s a few things you can try:": "您可以尝试以下一些操作：",
+    "Automatic Speech Recognition using Segments": "使用片段的自动语音识别",
     "Chat": "聊天",
     "Community Contributions": "社区贡献",
     "Computer Vision": "计算机视觉",
-    "Generative AI": "生成式人工智能",
+    "Conversational AI": "对话式 AI",
+    "Freeform Metadata": "自由格式元数据",
+    "Generative AI": "生成式 AI",
+    "Go Back": "返回",
+    "Go to Home": "前往首页",
+    "Here’s a few things you can try:": "你可以尝试以下操作：",
+    "Image Captioning": "图像描述",
+    "Image Classification": "图像分类",
+    "Inventory Tracking": "库存跟踪",
+    "Keypoint Labeling": "关键点标注",
+    "Label Studio": "Label Studio",
+    "Light": "浅色",
+    "Medical Image Classification with Bounding Boxes": "带边界框的医学图像分类",
+    "Multi-page document annotation": "多页文档标注",
+    "Named Entity Recognition": "命名实体识别",
     "Natural Language Processing": "自然语言处理",
-    "Ranking & Scoring": "排名与评分",
+    "Object Detection with Bounding Boxes": "边界框目标检测",
+    "OCR Labeling for PDFs": "PDF OCR 标注",
+    "Optical Character Recognition": "光学字符识别",
+    "Ranking & Scoring": "排序与打分",
+    "Response Selection": "响应选择",
+    "Semantic Segmentation with Masks": "掩码语义分割",
+    "Semantic Segmentation with Polygons": "多边形语义分割",
+    "Structured Data Parsing": "结构化数据解析",
+    "Tabular Data": "表格数据",
     "Time Series Analysis": "时间序列分析",
-    "Conversational AI": "对话式人工智能",
+    "Uh oh, this page doesn’t exist.": "哎呀，这个页面不存在。",
     "Videos": "视频",
-    "Go to Home": "回到首页",
-    "Auto": "汽车",
-    "Dark": "黑暗的",
-    "Heidi's down": "海蒂倒下了",
-    "Uh oh, something went wrong.": "呃哦，出了点问题。",
-    "Uh oh, this is not permitted.": "呃哦，这是不允许的。",
-    "Uh oh, this page doesn’t exist.": "呃哦，这个页面不存在。",
-    "Logs": "日志",
-    "Audio/Speech Processing": "音频/语音处理",
-    "Custom template": "自定义模板"
+    "Visual Genome": "视觉基因组",
+    "Visual Question Answering": "视觉问答"
   },
-  generic: {
-    "Save": "保存",
-    "Cancel skip": "取消跳过",
-    "Add \"": "添加 \"",
-    "Learn more": "了解更多",
-    "Settings": "设置",
-    "Projects": "项目",
-    "Log Out": "退出登录",
-    "Delete": "删除",
-    "Add new label": "添加新建标注",
-    "Copy labeling config": "复制标注配置",
-    "Delete annotation": "删除标注",
-    "Submit current annotation": "提交当前标注",
-    "Audio settings": "音频设置",
-    "Try Label Studio Starter Cloud, optimized for small teams and projects.": "试试 Label Studio Starter Cloud，它针对小型团队和项目做了优化。",
-    "Add a comment": "添加评论",
+  "generic": {
+    "Apply your AWS spend to Label Studio Enterprise": "将你的 AWS 承诺消费用于 Label Studio 企业版",
+    "Assign roles to your team using Label Studio Enterprise and control access to sensitive data at the project and workspace levels.": "使用 Label Studio 企业版为团队分配角色，并在项目和工作区级别控制对敏感数据的访问。",
+    "By Time": "按时间",
     "Cancel delete": "取消删除",
-    "Create a new annotation": "创建 a 新建标注",
-    "Delete Region": "删除区域",
-    "Label Studio Logo": "标签工作室标志",
-    "Enterprise": "企业版",
-    "Submit annotation": "提交标注",
-    "Annotations": "标注",
-    "Go to Previous Task": "前往上一步任务",
-    "Annotation overlap has been reached for this task. Your draft is preserved but cannot be submitted.": "此任务已达到注释重叠。您的草稿已保留，但无法提交。",
-    "Create relations between regions": "创建区域之间的关系",
-    "Unknown error": "未知错误",
-    "CancelledError": "取消错误",
-    "Cancel edit": "取消编辑",
-    "Continue": "继续",
+    "Combine automation plus human supervision to evaluate and ensure LLM quality in the Enterprise platform.": "在企业版平台中结合自动化与人工监督，评估并确保 LLM 质量。",
+    "Copied": "已复制",
+    "Copied!": "已复制！",
     "data()": "数据()",
-    "Hide Instructions": "隐藏说明",
-    "Labeling Instructions": "标注说明",
-    "Upload Image": "上传图片",
-    "Zoom 100%": "缩放 100%",
-    "Instructions": "说明",
+    "Delete": "删除",
+    "Did you know?": "你知道吗？",
     "Docs": "文档",
-    "Organization": "组织",
-    "Home": "首页",
-    "Select an option": "选择一个选项",
-    "Slack Community": "Slack 社区",
-    "Did you know?": "你可知道？",
-    "Redo": "重做",
-    "Previous task": "上一步任务",
-    "Copy Annotation": "复制标注",
     "Edit": "编辑",
-    "Undo": "撤销",
-    "Zoom In": "放大",
-    "Zoom Out": "缩小",
-    "Zoom to fit": "缩放至适应",
-    "Skip current task": "跳过当前任务",
-    "Edit Region": "编辑区域",
-    "Hide all regions": "隐藏全部区域",
-    "Pan Image": "平移图像",
-    "Show all regions": "显示全部区域",
-    "This task cannot be skipped": "该任务无法跳过",
-    "Density": "密度",
-    "Open Annotation Tab": "打开标注标签页",
-    "Search...": "搜索...",
-    "select all": "选择全部",
-    "Tab": "标签页",
-    "View": "视图",
-    "Failed to copy to clipboard": "无法复制到剪贴板",
-    "Hop backward": "快速后退",
-    "Hop forward": "快速前进",
-    "Magic Wand": "魔棒工具",
-    "Rotate Left": "向左旋转",
-    "Rotate Right": "向右旋转",
-    "Search JSON": "搜索 JSON",
-    "Show instructions": "显示说明",
-    "Step forward": "前进一步",
-    "Task cannot be skipped: allow_skip is false and user lacks manager role": "任务无法跳过：allow_skip 为 false 并且用户缺少管理员角色",
-    "Copy JSON": "复制 JSON",
-    "Next task": "下一步任务",
-    "Auto Detect": "自动检测",
-    "Choose text sentiment": "选择文字情感",
-    "Search": "搜索",
-    "First name": "名字",
-    "Last name": "姓氏",
-    "Bytes": "字节",
-    "Heidi's down": "海蒂倒下了",
-    "Image 1": "图片 1",
-    "Image 2": "图片 2",
-    "Lock Region": "锁定区域",
+    "Enable Single Sign-On for your team using SAML, SCIM2 or LDAP with Label Studio Enterprise.": "使用 Label Studio 企业版的 SAML、SCIM2 或 LDAP 为你的团队启用单点登录。",
+    "Enterprise": "企业版",
+    "Evaluate GenAI models": "评估 GenAI 模型",
+    "First name": "名",
+    "Go back": "返回",
+    "Group by Label": "按标签分组",
+    "Home": "首页",
+    "It looks like your team is growing!": "看起来你的团队正在壮大！",
+    "Join the community": "加入社区",
+    "Label Studio": "Label Studio",
+    "Label Studio Enterprise is now available on the AWS Marketplace so you can use your committed spend to streamline data labeling workflows.": "Label Studio 企业版现已上架 AWS Marketplace，你可以使用已承诺的 AWS 消费额度来简化数据标注工作流。",
+    "Label Studio Logo": "Label Studio 标志",
+    "Label Studio Playground": "Label Studio Playground",
+    "Label the video:": "标注视频：",
+    "Label timeline spans:": "标注时间片段：",
+    "Labeled regions will appear here": "已标注区域将显示在这里",
+    "Labeling Instructions": "标注说明",
+    "Last name": "姓",
+    "Learn more": "了解更多",
+    "Log Out": "退出登录",
     "Model": "模型",
-    "color 0.2s": "颜色 0.2s",
-    "model 0": "模型 0",
-    "Cloud Storage": "云存储",
-    "Create Project": "创建项目",
-    "Danger Zone": "危险操作",
-    "Data Manager": "数据管理",
-    "Delete Project": "删除项目",
-    "Drop All Tabs": "关闭所有标签页",
-    "Export": "导出",
-    "Import": "导入",
-    "Labeling Interface": "标注界面",
-    "Members": "成员",
-    "Membership Info": "成员信息",
-    "Optional description of your project": "项目描述（可选）",
-    "Personal Info": "个人信息",
-    "Perform these actions at your own risk.": "执行以下操作需自行承担风险。",
-    "Actions you take on this page can't be reverted.": "此页面上的操作无法撤销。",
-    "Make sure your data is backed up.": "请确保您的数据已备份。",
-    "Perform these actions at your own risk. Actions you take on this page can't be reverted. Make sure your data is backed up.": "执行以下操作需自行承担风险。此页面上的操作无法撤销。请确保您的数据已备份。",
-    "Project Name": "项目名称",
-    "Predictions": "预测",
-    "Annotation": "标注",
-    "Reset Cache": "重置缓存",
-    "Reset Cache may help in cases like if you are unable to modify the labeling configuration due to validation errors concerning existing labels, but you are confident that the labels don't exist.": "如果您因为现有标签的校验错误而无法修改标注配置，但又确认这些标签实际上并不存在，重置缓存可能会有帮助。",
-    "You can use this action to reset the cache and try again.": "您可以使用此操作重置缓存后再试一次。",
-    "Reset Cache may help in cases like if you are unable to modify the labeling configuration due to validation errors concerning existing labels, but you are confident that the labels don't exist. You can use this action to reset the cache and try again.": "如果您因为现有标签的校验错误而无法修改标注配置，但又确认这些标签实际上并不存在，重置缓存可能会有帮助。您可以使用此操作重置缓存后再试一次。",
-    "Reset to Defaults": "恢复默认",
-    "Save and Leave": "保存并离开",
-    "Submit": "提交",
-    "Workspace": "工作区"
+    "Organization": "组织",
+    "Playback Settings": "播放设置",
+    "Projects": "项目",
+    "Redo": "重做",
+    "Save": "保存",
+    "Save time with Auto-Labeling": "使用自动标注节省时间",
+    "Saved!": "已保存！",
+    "Select an option": "选择一个选项",
+    "Sequential sampling": "顺序采样",
+    "Settings": "设置",
+    "Share knowledge with the community": "与社区分享经验",
+    "Slack Community": "Slack 社区",
+    "Spectrogram Settings": "频谱图设置",
+    "Start labeling and track your results": "开始标注并跟踪你的结果",
+    "Submit annotation": "提交标注",
+    "Try Label Studio Starter Cloud, optimized for small teams and projects.": "试试为小团队和项目优化的 Label Studio Starter Cloud。",
+    "Undo": "撤销",
+    "Use automation to instantly label large-scale datasets without sacrificing quality in the Enterprise platform.": "使用自动化可即时标注大规模数据集，同时在企业版平台中不牺牲质量。",
+    "using this panel": "使用此面板",
+    "Want to simplify and secure logging in?": "想让登录更简单、更安全吗？",
+    "You can connect ML models using the backend SDK to save time with pre-labeling or active learning.": "你可以通过后端 SDK 连接 ML 模型，利用预标注或主动学习来节省时间。",
+    "You can increase the quality of your labeled data with reviewer workflows and task agreement scores using Label Studio Enterprise.": "你可以使用 Label Studio 企业版的审核流程和任务一致性评分来提高标注数据质量。"
   }
 };
-
-  var SKIP_TAGS = {
-    SCRIPT: true,
-    STYLE: true,
-    CODE: true,
-    PRE: true,
-    TEXTAREA: true
-  };
-
-  var ATTRIBUTES = [
-    "placeholder",
-    "title",
-    "aria-label",
-    "aria-placeholder",
-    "alt",
-    "data-tooltip",
-    "data-title",
-    "value"
-  ];
-
-  var EXACT_MAP = Object.create(null);
-  var NORMALIZED_MAP = Object.create(null);
-  var PHRASE_RULES = [];
+  var ATTRIBUTE_NAMES = ["placeholder", "title", "aria-label", "aria-placeholder", "alt", "data-tooltip", "data-title", "value"];
+  var SKIP_TAGS = { SCRIPT: true, STYLE: true, CODE: true, PRE: true, TEXTAREA: true };
+  var exactMap = Object.create(null);
+  var normalizedMap = Object.create(null);
+  var phrasePairs = [];
 
   Object.keys(MODULE_MAPS).forEach(function (moduleName) {
-    var moduleMap = MODULE_MAPS[moduleName] || {};
+    var moduleMap = MODULE_MAPS[moduleName];
     Object.keys(moduleMap).forEach(function (source) {
       var target = moduleMap[source];
-      if (!(source in EXACT_MAP)) {
-        EXACT_MAP[source] = target;
-      }
-
-      var normalizedSource = normalizeSpaces(source);
-      if (!(normalizedSource in NORMALIZED_MAP)) {
-        NORMALIZED_MAP[normalizedSource] = target;
-      }
-
-      if (source.length >= 8 && source.length <= 120 && source.indexOf(" ") !== -1) {
-        PHRASE_RULES.push([source, target]);
+      exactMap[source] = target;
+      normalizedMap[normalizeText(source)] = target;
+      if (source.length >= 12 && source.indexOf("{") === -1 && source.indexOf("${") === -1) {
+        phrasePairs.push([source, target]);
       }
     });
   });
 
-  PHRASE_RULES.sort(function (a, b) {
-    return b[0].length - a[0].length;
+  phrasePairs.sort(function (left, right) {
+    return right[0].length - left[0].length;
   });
 
-  function normalizeSpaces(text) {
+  function normalizeText(text) {
     return String(text || "").replace(/\s+/g, " ").trim();
   }
 
@@ -856,64 +574,62 @@
     if (!element) {
       return false;
     }
-
     if (SKIP_TAGS[element.tagName]) {
       return true;
     }
-
     if (element.closest("script, style, code, pre, textarea")) {
       return true;
     }
-
-    return !!element.closest([
-      '[data-region="true"]',
-      '[data-testid="task-content"]',
-      '[class*="task-text"]',
-      '[class*="task-preview"]',
-      '[class*="annotation-text"]',
-      '[class*="htx-text"]',
-      '[class*="lsf-richtext"]'
-    ].join(", "));
+    return !!element.closest("[data-no-translate], [data-translation-skip], .task-text, .lsf-task-data");
   }
 
-  function translateValue(value) {
-    if (!value) {
-      return value;
+  function translateText(text) {
+    if (!text) {
+      return text;
     }
-
-    var exact = EXACT_MAP[value];
-    if (exact) {
-      return exact;
+    var trimmed = text.trim();
+    if (!trimmed) {
+      return text;
     }
-
-    var normalized = normalizeSpaces(value);
-    if (!normalized) {
-      return value;
+    var translated = exactMap[trimmed] || normalizedMap[normalizeText(trimmed)] || null;
+    if (translated) {
+      return text.replace(trimmed, translated);
     }
-
-    var normalizedExact = NORMALIZED_MAP[normalized];
-    if (normalizedExact) {
-      return value.replace(normalized, normalizedExact);
-    }
-
-    var nextValue = value;
-    PHRASE_RULES.forEach(function (pair) {
-      var source = pair[0];
-      var target = pair[1];
-      if (nextValue.indexOf(source) !== -1) {
-        nextValue = nextValue.split(source).join(target);
+    var updated = text;
+    phrasePairs.forEach(function (pair) {
+      if (updated.indexOf(pair[0]) !== -1) {
+        updated = updated.split(pair[0]).join(pair[1]);
       }
     });
+    updated = updated.replace(/\b1 minute ago\b/g, "1 分钟前");
+    updated = updated.replace(/\b(\d+)\s+minutes ago\b/g, "$1 分钟前");
+    updated = updated.replace(/\b1 hour ago\b/g, "1 小时前");
+    updated = updated.replace(/\b(\d+)\s+hours ago\b/g, "$1 小时前");
+    updated = updated.replace(/\bless than a minute ago\b/g, "刚刚");
+    updated = updated.replace(/\bseconds ago\b/g, "几秒前");
+    updated = updated.replace(/\b(\d+) of (\d+) Tasks \(([^)]+)\)/g, "$1 / $2 任务 ($3)");
+    updated = updated.replace(/\bTasks:\s*([0-9]+\s*\/\s*[0-9]+)\b/g, "任务：$1");
+    updated = updated.replace(/\bSubmitted annotations:\s*(\d+)\b/g, "已提交标注：$1");
+    updated = updated.replace(/\bPredictions:\s*(\d+)\b/g, "预测：$1");
+    updated = updated.replace(/\(opens in a new tab\)/g, "(在新标签页中打开)");
+    return updated;
+  }
 
-    return nextValue;
+  function translateDocumentTitle() {
+    if (!document.title) {
+      return;
+    }
+    var nextTitle = translateText(document.title);
+    if (nextTitle !== document.title) {
+      document.title = nextTitle;
+    }
   }
 
   function processTextNode(node) {
     if (!node || !node.parentElement || shouldSkipElement(node.parentElement)) {
       return;
     }
-
-    var nextValue = translateValue(node.nodeValue);
+    var nextValue = translateText(node.nodeValue);
     if (nextValue !== node.nodeValue) {
       node.nodeValue = nextValue;
     }
@@ -923,14 +639,12 @@
     if (!(element instanceof Element) || shouldSkipElement(element)) {
       return;
     }
-
-    ATTRIBUTES.forEach(function (attr) {
+    ATTRIBUTE_NAMES.forEach(function (attr) {
       if (!element.hasAttribute(attr)) {
         return;
       }
-
       var currentValue = element.getAttribute(attr);
-      var nextValue = translateValue(currentValue);
+      var nextValue = translateText(currentValue);
       if (nextValue !== currentValue) {
         element.setAttribute(attr, nextValue);
         if (attr === "value" && "value" in element) {
@@ -944,33 +658,39 @@
     if (!root) {
       return;
     }
-
     if (root.nodeType === Node.TEXT_NODE) {
       processTextNode(root);
       return;
     }
-
     if (root.nodeType !== Node.ELEMENT_NODE || shouldSkipElement(root)) {
       return;
     }
-
     processAttributes(root);
-
     var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
       acceptNode: function (node) {
         if (!node.parentElement || shouldSkipElement(node.parentElement)) {
           return NodeFilter.FILTER_REJECT;
         }
-
         return NodeFilter.FILTER_ACCEPT;
       }
     });
-
     while (walker.nextNode()) {
       processTextNode(walker.currentNode);
     }
+  }
 
-    root.querySelectorAll("*").forEach(processAttributes);
+  function applyOverlay() {
+    translateDocumentTitle();
+    walk(document.body);
+  }
+
+  function hookHistory(methodName) {
+    var original = history[methodName];
+    history[methodName] = function () {
+      var result = original.apply(this, arguments);
+      window.setTimeout(applyOverlay, 0);
+      return result;
+    };
   }
 
   var observer = new MutationObserver(function (mutations) {
@@ -979,38 +699,18 @@
         processTextNode(mutation.target);
         return;
       }
-
       if (mutation.type === "attributes") {
         processAttributes(mutation.target);
         return;
       }
-
       mutation.addedNodes.forEach(function (node) {
         walk(node);
       });
     });
   });
 
-  function applyOverlay() {
-    walk(document.body);
-  }
-
-  function hookHistory(methodName) {
-    var original = history[methodName];
-    if (typeof original !== "function") {
-      return;
-    }
-
-    history[methodName] = function () {
-      var result = original.apply(this, arguments);
-      window.setTimeout(applyOverlay, 0);
-      return result;
-    };
-  }
-
   hookHistory("pushState");
   hookHistory("replaceState");
-
   window.addEventListener("popstate", function () {
     window.setTimeout(applyOverlay, 0);
   });
@@ -1026,6 +726,6 @@
     subtree: true,
     characterData: true,
     attributes: true,
-    attributeFilter: ATTRIBUTES
+    attributeFilter: ATTRIBUTE_NAMES
   });
 })();

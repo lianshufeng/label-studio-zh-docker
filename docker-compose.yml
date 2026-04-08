@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   db:
     image: pgautoupgrade/pgautoupgrade:17-alpine
@@ -13,7 +15,7 @@ services:
   label-studio:
     build:
       context: .
-    image: label-studio-zh-docker:1.23.0
+    image: lianshufeng/label-studio-zh:1.23.0
     container_name: labelstudio
     restart: always
     depends_on:

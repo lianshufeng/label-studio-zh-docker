@@ -46,6 +46,7 @@ description: 为 Label Studio 构建和维护中文界面 overlay。适用于以
 7. 如果用户明确指定正式版本号，例如 `1.23.0`，默认直接使用同名 semver 标签 `heartexlabs/label-studio:1.23.0`，不得擅自改成 `ls-release-*`、RC、nightly、develop 或其他派生标签。
 8. 只有在“用户未指定标签形式且同名 semver 标签确实不存在”时，才允许退回使用与 release 对应的 `ls-release-*` 标签；一旦退回，必须在回复中明确说明原因。
 9. 不得把“我推测 release 镜像更稳”当作改用 `ls-release-*` 的理由；需要以用户要求和实际标签存在性为准。
+10. 每次执行升级或重生成时，必须以当前版本源码扫描结果和技能模板为输入全新生成产物；禁止从仓库现有文件、Git 历史或 `HEAD` 直接恢复旧文件内容作为本次交付结果。
 
 ## 必须产物
 
@@ -86,6 +87,7 @@ description: 为 Label Studio 构建和维护中文界面 overlay。适用于以
 7. 禁止把 `ls-zh.js` 退化成只包含少量示例翻译、演示词条或几十条高频词的“瘦词典”，尤其不能在已经完成源码全量扫描后仍只保留明显偏少的 UI 映射。
 8. 禁止把 `docs`、`tests`、`storybook`、`fixtures`、`mocks`、`cypress/playwright/e2e` 等非运行时界面目录当成主要扫描来源，否则会稀释真实 UI 文案。
 9. 禁止把 `scripts/`、`translations/` 或翻译记忆相关文件重新加入 `.gitignore`，否则会破坏跨机器复现。
+10. 禁止用 `git show HEAD:<path>`、`git checkout -- <path>`、`git restore --source=HEAD <path>` 或任何等价方式，把仓库历史内容直接写回为本次“重生成”结果；只能基于源码扫描、技能模板和当前任务新增规则重新生成。
 
 ## 版本确认
 
@@ -124,15 +126,17 @@ description: 为 Label Studio 构建和维护中文界面 overlay。适用于以
    - `overrides/static/zh-overlay/ls-zh.css`
    - `README.md`
 4. 按 Docker overlay 方案生成或更新 `Dockerfile`，优先采用技能附件中的模板骨架：
+   - 直接以 `assets/Dockerfile.template` 为模板渲染正式文件，只替换 `{{VERSION}}` 等必要变量，不手工从旧文件拷贝版本号或大段内容
    - `FROM heartexlabs/label-studio:<version>`
    - `COPY overrides/static/zh-overlay/ls-zh.js ...`
    - `COPY overrides/static/zh-overlay/ls-zh.css ...`
    - `COPY patches/apply_overlay.py /tmp/apply_overlay.py`
    - `RUN python /tmp/apply_overlay.py && rm -f /tmp/apply_overlay.py`
 5. 生成或更新 `docker-compose.yml` 时，优先采用技能附件中的数据库版模板骨架，而不是退化为单容器方案：
+   - 直接以 `assets/docker-compose.yml.template` 为模板渲染正式文件，只替换 `{{VERSION}}` 等必要变量，不手工拼接镜像名或从仓库旧文件恢复
    - 包含 `db` 与 `label-studio` 两个服务
    - `db` 使用 `pgautoupgrade/pgautoupgrade:17-alpine`
-   - `label-studio` 使用 `build: .` 并固定 `image: label-studio-zh-docker:<version>`
+   - `label-studio` 使用 `build: .`，其中镜像仓库名前缀固定为 `lianshufeng/label-studio-zh`，标签部分必须使用当前版本号，即 `image: lianshufeng/label-studio-zh:{{VERSION}}`
    - 默认端口映射为 `8090:8000`
    - 默认数据卷为 `./data/postgres` 与 `./data/label-studio`
    - `restart` 统一使用 `always`

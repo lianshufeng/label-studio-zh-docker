@@ -1,14 +1,13 @@
 from pathlib import Path
 
 
-ASSET_VERSION = "5"
-LS_CSS = f'<link rel="stylesheet" href="/static/zh-overlay/ls-zh.css?v={ASSET_VERSION}">'
+LS_CSS = '<link rel="stylesheet" href="/static/zh-overlay/ls-zh.css?v=1">'
 LS_CONFIG = """window.LS_ZH_OVERLAY = {
       enabled: true,
       debug: false,
       lang: "zh-CN"
     };"""
-LS_JS = f'<script src="/static/zh-overlay/ls-zh.js?v={ASSET_VERSION}"></script>'
+LS_JS = '<script src="/static/zh-overlay/ls-zh.js?v=1"></script>'
 
 
 def insert_once(text: str, anchor: str, snippet: str, *, after: bool = True) -> str:

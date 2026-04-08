@@ -105,33 +105,20 @@ HIGH_PRIORITY_HINTS = (
     "webhook",
     "workspace",
 )
-
-ENTRY_KIND_WEIGHTS = {
-    "attributes": 3,
-    "groups": 2,
-    "html": 2,
-    "titles": 3,
-    "quoted": 1,
-}
+ENTRY_KIND_WEIGHTS = {"attributes": 3, "groups": 2, "html": 2, "titles": 3, "quoted": 1}
 
 
 def should_keep(text: str) -> bool:
     text = " ".join(text.split()).strip()
-    if len(text) < 3:
-        return False
-    if len(text) > 400:
+    if len(text) < 3 or len(text) > 400:
         return False
     if text.startswith(("/", "$", "{", "http://", "https://", "data:")):
         return False
-    if re.search(r"[{}\[\]<>]", text):
-        return False
-    if re.search(r"[/\\@]", text):
+    if re.search(r"[{}\[\]<>]", text) or re.search(r"[/\\@]", text):
         return False
     if re.search(r"\.(svg|png|jpg|jpeg|gif|json|scss|css|tsx|ts|jsx|js|py|md|yml|yaml)$", text, re.IGNORECASE):
         return False
-    if re.fullmatch(r"[\W\d_]+", text):
-        return False
-    if not re.search(r"[A-Za-z]", text):
+    if re.fullmatch(r"[\W\d_]+", text) or not re.search(r"[A-Za-z]", text):
         return False
     return True
 
@@ -145,14 +132,12 @@ def line_number_for_offset(text: str, offset: int) -> int:
 
 
 def build_context(text: str, start: int, end: int) -> str:
-    snippet = normalize(text[max(0, start - 80) : min(len(text), end + 80)])
-    return snippet[:240]
+    return normalize(text[max(0, start - 80) : min(len(text), end + 80)])[:240]
 
 
 def classify_priority(module_name: str, kind: str, text: str, path: Path) -> str:
-    lowered = text.lower()
     score = ENTRY_KIND_WEIGHTS.get(kind, 0)
-
+    lowered = text.lower()
     if module_name in {"auth", "home", "projects", "import_export", "data_manager", "settings"}:
         score += 2
     if path.suffix.lower() in {".html", ".yml", ".yaml"}:
@@ -161,7 +146,6 @@ def classify_priority(module_name: str, kind: str, text: str, path: Path) -> str
         score += 2
     if len(text.split()) <= 8:
         score += 1
-
     if score >= 5:
         return "high"
     if score >= 3:
@@ -203,209 +187,86 @@ def add_module_value(module_bucket: dict[str, dict[str, set[str]]], module_name:
         module_bucket[module_name][kind].add(value)
 
 
-def add_entry(
-    entry_bucket: dict[tuple[str, str], dict[str, object]],
-    *,
-    root: Path,
-    path: Path,
-    module_name: str,
-    kind: str,
-    value: str,
-    text: str,
-    start: int,
-    end: int,
-) -> None:
+def add_entry(entry_bucket: dict[tuple[str, str], dict[str, object]], *, root: Path, path: Path, module_name: str, kind: str, value: str, text: str, start: int, end: int) -> None:
     normalized = normalize(value)
     if not should_keep(normalized):
         return
-
     key = (module_name, normalized.casefold())
     relative_path = path.relative_to(root).as_posix()
     line = line_number_for_offset(text, start)
     context = build_context(text, start, end)
-
     entry = entry_bucket.setdefault(
         key,
-        {
-            "source": normalized,
-            "module": module_name,
-            "priority": classify_priority(module_name, kind, normalized, path),
-            "occurrences": 0,
-            "kinds": [],
-            "files": [],
-            "contexts": [],
-        },
+        {"source": normalized, "module": module_name, "priority": classify_priority(module_name, kind, normalized, path), "occurrences": 0, "kinds": [], "files": [], "contexts": []},
     )
-
     entry["occurrences"] = int(entry["occurrences"]) + 1
     if kind not in entry["kinds"]:
         entry["kinds"].append(kind)
     if relative_path not in entry["files"]:
         entry["files"].append(relative_path)
     if len(entry["contexts"]) < 6:
-        entry["contexts"].append(
-            {
-                "file": relative_path,
-                "line": line,
-                "kind": kind,
-                "text": context,
-            }
-        )
+        entry["contexts"].append({"file": relative_path, "line": line, "kind": kind, "text": context})
 
 
-def extract_annotation_templates(
-    root: Path,
-    bucket: dict[str, set[str]],
-    module_bucket: dict[str, dict[str, set[str]]],
-    entry_bucket: dict[tuple[str, str], dict[str, object]],
-) -> None:
+def extract_annotation_templates(root: Path, bucket: dict[str, set[str]], module_bucket: dict[str, dict[str, set[str]]], entry_bucket: dict[tuple[str, str], dict[str, object]]) -> None:
     templates_root = root / "label_studio" / "annotation_templates"
     if not templates_root.exists():
         return
-
     for config_path in templates_root.rglob("config.y*ml"):
         text = config_path.read_text(encoding="utf-8", errors="ignore")
         for match in TITLE_RE.finditer(text):
             value = normalize(match.group(1))
             add_value(bucket, "template_titles", value)
             add_module_value(module_bucket, "templates", "titles", value)
-            add_entry(
-                entry_bucket,
-                root=root,
-                path=config_path,
-                module_name="templates",
-                kind="titles",
-                value=value,
-                text=text,
-                start=match.start(1),
-                end=match.end(1),
-            )
+            add_entry(entry_bucket, root=root, path=config_path, module_name="templates", kind="titles", value=value, text=text, start=match.start(1), end=match.end(1))
         for match in GROUP_RE.finditer(text):
             value = normalize(match.group(1))
             add_value(bucket, "template_groups", value)
             add_module_value(module_bucket, "templates", "groups", value)
-            add_entry(
-                entry_bucket,
-                root=root,
-                path=config_path,
-                module_name="templates",
-                kind="groups",
-                value=value,
-                text=text,
-                start=match.start(1),
-                end=match.end(1),
-            )
+            add_entry(entry_bucket, root=root, path=config_path, module_name="templates", kind="groups", value=value, text=text, start=match.start(1), end=match.end(1))
 
 
-def extract_candidate_strings(
-    root: Path,
-    bucket: dict[str, set[str]],
-    module_bucket: dict[str, dict[str, set[str]]],
-    entry_bucket: dict[tuple[str, str], dict[str, object]],
-) -> None:
+def extract_candidate_strings(root: Path, bucket: dict[str, set[str]], module_bucket: dict[str, dict[str, set[str]]], entry_bucket: dict[tuple[str, str], dict[str, object]]) -> None:
     for path in iter_text_files(root):
         text = path.read_text(encoding="utf-8", errors="ignore")
         html_scan_text = JSX_WHITESPACE_RE.sub(" ", text)
         module_name = detect_module(path)
-
         for match in QUOTED_RE.finditer(text):
             value = normalize(match.group("text"))
             add_value(bucket, "candidate_strings", value)
             add_module_value(module_bucket, module_name, "quoted", value)
-            add_entry(
-                entry_bucket,
-                root=root,
-                path=path,
-                module_name=module_name,
-                kind="quoted",
-                value=value,
-                text=text,
-                start=match.start("text"),
-                end=match.end("text"),
-            )
-
+            add_entry(entry_bucket, root=root, path=path, module_name=module_name, kind="quoted", value=value, text=text, start=match.start("text"), end=match.end("text"))
         for match in BACKTICK_RE.finditer(text):
             value = normalize(match.group("text"))
             if "${" in value:
                 continue
             add_value(bucket, "candidate_strings", value)
             add_module_value(module_bucket, module_name, "quoted", value)
-            add_entry(
-                entry_bucket,
-                root=root,
-                path=path,
-                module_name=module_name,
-                kind="quoted",
-                value=value,
-                text=text,
-                start=match.start("text"),
-                end=match.end("text"),
-            )
-
+            add_entry(entry_bucket, root=root, path=path, module_name=module_name, kind="quoted", value=value, text=text, start=match.start("text"), end=match.end("text"))
         for match in CONCAT_QUOTED_RE.finditer(text):
             parts = re.findall(r"""(?P<q>["'])(?P<text>[^"'\\\n][^\\\n]{1,220}?)(?P=q)""", match.group("chunk"))
             value = normalize("".join(part[1] for part in parts))
             add_value(bucket, "candidate_strings", value)
             add_module_value(module_bucket, module_name, "quoted", value)
-            add_entry(
-                entry_bucket,
-                root=root,
-                path=path,
-                module_name=module_name,
-                kind="quoted",
-                value=value,
-                text=text,
-                start=match.start("chunk"),
-                end=match.end("chunk"),
-            )
-
+            add_entry(entry_bucket, root=root, path=path, module_name=module_name, kind="quoted", value=value, text=text, start=match.start("chunk"), end=match.end("chunk"))
         for match in ATTR_RE.finditer(text):
             value = normalize(match.group("text"))
             add_value(bucket, "attribute_text", value)
             add_module_value(module_bucket, module_name, "attributes", value)
-            add_entry(
-                entry_bucket,
-                root=root,
-                path=path,
-                module_name=module_name,
-                kind="attributes",
-                value=value,
-                text=text,
-                start=match.start("text"),
-                end=match.end("text"),
-            )
-
+            add_entry(entry_bucket, root=root, path=path, module_name=module_name, kind="attributes", value=value, text=text, start=match.start("text"), end=match.end("text"))
         if path.suffix.lower() in {".html", ".htm", ".js", ".jsx", ".ts", ".tsx"}:
             for match in TAG_TEXT_RE.finditer(html_scan_text):
                 value = normalize(match.group(1))
                 add_value(bucket, "html_text", value)
                 add_module_value(module_bucket, module_name, "html", value)
-                add_entry(
-                    entry_bucket,
-                    root=root,
-                    path=path,
-                    module_name=module_name,
-                    kind="html",
-                    value=value,
-                    text=html_scan_text,
-                    start=match.start(1),
-                    end=match.end(1),
-                )
+                add_entry(entry_bucket, root=root, path=path, module_name=module_name, kind="html", value=value, text=html_scan_text, start=match.start(1), end=match.end(1))
 
 
-def build_output(
-    bucket: dict[str, set[str]],
-    module_bucket: dict[str, dict[str, set[str]]],
-    entry_bucket: dict[tuple[str, str], dict[str, object]],
-) -> dict[str, object]:
-    output: dict[str, list[str]] = {}
-    for key, values in bucket.items():
-        output[key] = sorted(values, key=lambda s: s.lower())
-
+def build_output(bucket: dict[str, set[str]], module_bucket: dict[str, dict[str, set[str]]], entry_bucket: dict[tuple[str, str], dict[str, object]]) -> dict[str, object]:
+    output = {key: sorted(values, key=lambda s: s.lower()) for key, values in bucket.items()}
     all_strings = set()
     for values in bucket.values():
         all_strings.update(values)
-
     modules_output: dict[str, dict[str, list[str]]] = {}
     for module_name, parts in module_bucket.items():
         module_values = set()
@@ -415,29 +276,11 @@ def build_output(
             serialized_parts[part_name] = sorted_values
             module_values.update(part_values)
         serialized_parts["all"] = sorted(module_values, key=lambda s: s.lower())
-        serialized_parts["entries"] = sorted(
-            [
-                entry
-                for entry in entry_bucket.values()
-                if entry["module"] == module_name
-            ],
-            key=lambda item: (
-                {"high": 0, "medium": 1, "low": 2}.get(str(item["priority"]), 3),
-                str(item["source"]).lower(),
-            ),
-        )
+        serialized_parts["entries"] = sorted([entry for entry in entry_bucket.values() if entry["module"] == module_name], key=lambda item: ({"high": 0, "medium": 1, "low": 2}.get(str(item["priority"]), 3), str(item["source"]).lower()))
         modules_output[module_name] = serialized_parts
-
     return {
         "all_strings": sorted(all_strings, key=lambda s: s.lower()),
-        "entries": sorted(
-            entry_bucket.values(),
-            key=lambda item: (
-                {"high": 0, "medium": 1, "low": 2}.get(str(item["priority"]), 3),
-                str(item["module"]),
-                str(item["source"]).lower(),
-            ),
-        ),
+        "entries": sorted(entry_bucket.values(), key=lambda item: ({"high": 0, "medium": 1, "low": 2}.get(str(item["priority"]), 3), str(item["module"]), str(item["source"]).lower())),
         "template_groups": output.get("template_groups", []),
         "template_titles": output.get("template_titles", []),
         "candidate_strings": output.get("candidate_strings", []),
@@ -450,24 +293,17 @@ def build_output(
 def main() -> None:
     parser = argparse.ArgumentParser(description="Extract Label Studio UI strings from source code.")
     parser.add_argument("source_root", help="Label Studio source root, e.g. label-studio-1.23.0")
-    parser.add_argument(
-        "--output",
-        help="Write extracted strings to JSON file. Defaults to stdout.",
-    )
+    parser.add_argument("--output", help="Write extracted strings to JSON file. Defaults to stdout.")
     args = parser.parse_args()
-
     root = Path(args.source_root).resolve()
     if not root.exists():
         raise SystemExit(f"source root not found: {root}")
-
     bucket: dict[str, set[str]] = defaultdict(set)
     module_bucket: dict[str, dict[str, set[str]]] = defaultdict(lambda: defaultdict(set))
     entry_bucket: dict[tuple[str, str], dict[str, object]] = {}
     extract_annotation_templates(root, bucket, module_bucket, entry_bucket)
     extract_candidate_strings(root, bucket, module_bucket, entry_bucket)
-
     payload = build_output(bucket, module_bucket, entry_bucket)
-
     if args.output:
         output_path = Path(args.output).resolve()
         output_path.parent.mkdir(parents=True, exist_ok=True)
