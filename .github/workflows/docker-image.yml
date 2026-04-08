@@ -24,9 +24,19 @@ jobs:
         run: echo "BRANCH_NAME=${GITHUB_REF_NAME}" >> $GITHUB_ENV
 
       - name: Build and push
-        working-directory: base
+        working-directory: ./
         run: |
           IMAGE_NAME=lianshufeng/label-studio-zh:${BRANCH_NAME}
+          echo "Using tag: $IMAGE_NAME"
+
+          docker build -f Dockerfile -t $IMAGE_NAME .
+          docker push $IMAGE_NAME
+
+
+      - name: Build and push
+        working-directory: ./
+        run: |
+          IMAGE_NAME=lianshufeng/label-studio-zh:latest
           echo "Using tag: $IMAGE_NAME"
 
           docker build -f Dockerfile -t $IMAGE_NAME .
