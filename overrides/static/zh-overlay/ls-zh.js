@@ -185,6 +185,8 @@
     "Annotator": "标注员",
     "Authentication required": "需要身份验证",
     "Enable": "启用",
+    "Tools": "工具",
+    "Shortcuts for navigating phrases and regions in paragraph/dialogue view": "在段落/对话视图中切换短语和区域的快捷方式",
     "Please enter JSON data to import": "请输入要导入的 JSON 数据",
     "Beta": "测试版",
     "Copy": "复制",
