@@ -15,7 +15,7 @@ services:
   label-studio:
     build:
       context: .
-    image: label-studio-zh-docker:{{VERSION}}
+    image: lianshufeng/label-studio-zh:{{VERSION}}
     container_name: labelstudio
     restart: always
     depends_on:
