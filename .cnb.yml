@@ -19,7 +19,7 @@
               echo "IMAGE_REPO=${IMAGE_REPO}"
               echo "BRANCH_NAME=${BRANCH_NAME}"
 
-              docker login -u "${DOCKERHUB_USERNAME}" -p "${DOCKERHUB_TOKEN}"
+              docker login "${CNB_DOCKER_REGISTRY}" -u cnb -p "${CNB_TOKEN}"
 
               docker build --progress=plain \
                 -f Dockerfile \
