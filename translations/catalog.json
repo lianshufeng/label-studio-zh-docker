@@ -48,6 +48,13 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Annotations Submitted",
+        "target": "已提交标注",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Audio Controls",
         "target": "音频控制",
         "status": "approved",
@@ -55,10 +62,24 @@
         "translation_source": "catalog-manual"
       },
       {
+        "source": "Auto Detect",
+        "target": "自动检测",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Auto-Label Tasks",
         "target": "自动标注任务",
         "status": "approved",
         "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Brush Tool",
+        "target": "画笔工具",
+        "status": "approved",
+        "priority": "medium",
         "translation_source": "builtin-terms"
       },
       {
@@ -118,10 +139,24 @@
         "translation_source": "auto-phrases"
       },
       {
+        "source": "Cycle Regions",
+        "target": "循环切换区域",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Data Manager",
         "target": "数据管理",
         "status": "approved",
         "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Decrease Tool Size",
+        "target": "减小工具大小",
+        "status": "approved",
+        "priority": "medium",
         "translation_source": "builtin-terms"
       },
       {
@@ -181,6 +216,20 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Draw a rotated rectangle using 3-point selection",
+        "target": "使用三点选择绘制旋转矩形",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Duplicate Region",
+        "target": "复制区域",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "E-mail",
         "target": "电子邮箱",
         "status": "approved",
@@ -202,10 +251,31 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Ellipse Tool",
+        "target": "椭圆工具",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Email Preferences",
         "target": "邮件偏好",
         "status": "approved",
         "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Eraser Tool",
+        "target": "橡皮擦工具",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Exit Region Mode",
+        "target": "退出区域模式",
+        "status": "approved",
+        "priority": "medium",
         "translation_source": "builtin-terms"
       },
       {
@@ -216,10 +286,45 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Extend Left",
+        "target": "向左扩展",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Extend Right",
+        "target": "向右扩展",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Extend the region to the left",
+        "target": "向左扩展区域",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Extend the region to the right",
+        "target": "向右扩展区域",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Failed to save imported hotkeys",
         "target": "保存导入的快捷键失败",
         "status": "approved",
         "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "First Frame",
+        "target": "第一帧",
+        "status": "approved",
+        "priority": "medium",
         "translation_source": "builtin-terms"
       },
       {
@@ -286,6 +391,34 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Hop Backward",
+        "target": "快速向后跳转",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Hop backward quickly",
+        "target": "快速向后跳转",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Hop Forward",
+        "target": "快速向前跳转",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Hop forward quickly",
+        "target": "快速向前跳转",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Hotkeys imported successfully",
         "target": "快捷键导入成功",
         "status": "approved",
@@ -342,10 +475,52 @@
         "translation_source": "auto-phrases"
       },
       {
+        "source": "Increase Tool Size",
+        "target": "增大工具大小",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Jump to first frame",
+        "target": "跳转到第一帧",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Jump to last frame",
+        "target": "跳转到最后一帧",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Jump to next keyframe",
+        "target": "跳转到下一个关键帧",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Jump to previous keyframe",
+        "target": "跳转到上一个关键帧",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Keep me logged in this browser",
         "target": "在此浏览器中保持登录",
         "status": "approved",
         "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Key Point Tool",
+        "target": "关键点工具",
+        "status": "approved",
+        "priority": "medium",
         "translation_source": "builtin-terms"
       },
       {
@@ -363,6 +538,13 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Last Frame",
+        "target": "最后一帧",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Last Name",
         "target": "姓",
         "status": "approved",
@@ -377,10 +559,31 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Legacy Token",
+        "target": "旧版令牌",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Lock Region",
+        "target": "锁定区域",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Log in",
         "target": "登录",
         "status": "approved",
         "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Magic Wand",
+        "target": "魔棒工具",
+        "status": "approved",
+        "priority": "medium",
         "translation_source": "builtin-terms"
       },
       {
@@ -426,10 +629,52 @@
         "translation_source": "catalog-manual"
       },
       {
+        "source": "Move Tool",
+        "target": "移动工具",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "My Account",
         "target": "我的账户",
         "status": "approved",
         "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "My role",
+        "target": "我的角色",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Navigate to the next phrase in paragraph view",
+        "target": "在段落视图中导航到下一短语",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Navigate to the next region within current phrase",
+        "target": "导航到当前短语中的下一个区域",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Navigate to the previous phrase in paragraph view",
+        "target": "在段落视图中导航到上一短语",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Navigate to the previous region within current phrase",
+        "target": "导航到当前短语中的上一个区域",
+        "status": "approved",
+        "priority": "medium",
         "translation_source": "builtin-terms"
       },
       {
@@ -438,6 +683,55 @@
         "status": "approved",
         "priority": "high",
         "translation_source": "auto-phrases"
+      },
+      {
+        "source": "Next Image",
+        "target": "下一张图像",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Next Keyframe",
+        "target": "下一个关键帧",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Next Phrase",
+        "target": "下一短语",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Next Region in Phrase",
+        "target": "短语中的下一个区域",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Owner",
+        "target": "所有者",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Pan around the image",
+        "target": "在图像中平移",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Pan Image",
+        "target": "平移图像",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
       },
       {
         "source": "Paragraph Navigation",
@@ -468,6 +762,55 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Polygon Tool",
+        "target": "多边形工具",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Previous Image",
+        "target": "上一张图像",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Previous Keyframe",
+        "target": "上一个关键帧",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Previous Phrase",
+        "target": "上一短语",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Previous Region in Phrase",
+        "target": "短语中的上一个区域",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Projects contributed to",
+        "target": "参与项目数",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Rectangle Tool",
+        "target": "矩形工具",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Redo",
         "target": "重做",
         "status": "approved",
@@ -487,6 +830,13 @@
         "status": "approved",
         "priority": "medium",
         "translation_source": "catalog-manual"
+      },
+      {
+        "source": "Registration date",
+        "target": "注册日期",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
       },
       {
         "source": "Remove all regions",
@@ -517,6 +867,48 @@
         "translation_source": "auto-phrases"
       },
       {
+        "source": "Rewind 1 Second",
+        "target": "快退 1 秒",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Rewind the audio by 1 second",
+        "target": "将音频快退 1 秒",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Rotate Left",
+        "target": "向左旋转",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Rotate Right",
+        "target": "向右旋转",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Rotate the image 90° to the left",
+        "target": "将图像向左旋转 90°",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Rotate the image 90° to the right",
+        "target": "将图像向右旋转 90°",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Save",
         "target": "保存",
         "status": "approved",
@@ -531,6 +923,41 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Seek Backward",
+        "target": "向后定位",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Seek Forward",
+        "target": "向前定位",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Seek video backward",
+        "target": "向后定位视频",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Seek video forward",
+        "target": "向前定位视频",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Select All and Annotate",
+        "target": "全选并标注",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Select all text in current phrase and create annotation",
         "target": "选择当前短语中的全部文本并创建标注",
         "status": "approved",
@@ -542,6 +969,62 @@
         "target": "选择一个选项",
         "status": "approved",
         "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Select the brush tool",
+        "target": "选择画笔工具",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Select the ellipse tool",
+        "target": "选择椭圆工具",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Select the eraser tool",
+        "target": "选择橡皮擦工具",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Select the key point annotation tool",
+        "target": "选择关键点标注工具",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Select the magic wand tool for smart region selection",
+        "target": "选择魔棒工具进行智能区域选择",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Select the move tool to reposition annotations",
+        "target": "选择移动工具以重新定位标注",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Select the polygon annotation tool",
+        "target": "选择多边形标注工具",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Select the rectangle annotation tool",
+        "target": "选择矩形标注工具",
+        "status": "approved",
+        "priority": "medium",
         "translation_source": "builtin-terms"
       },
       {
@@ -608,6 +1091,34 @@
         "translation_source": "catalog-manual"
       },
       {
+        "source": "Shrink Left",
+        "target": "向左收缩",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Shrink Right",
+        "target": "向右收缩",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Shrink the region from the left",
+        "target": "从左侧收缩区域",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Shrink the region from the right",
+        "target": "从右侧收缩区域",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Sign up",
         "target": "注册",
         "status": "approved",
@@ -629,6 +1140,34 @@
         "translation_source": "catalog-manual"
       },
       {
+        "source": "Step Back",
+        "target": "后退一帧",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Step back one frame",
+        "target": "后退一帧",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Step Forward",
+        "target": "前进一帧",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Step forward one frame",
+        "target": "前进一帧",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Submit Annotation",
         "target": "提交标注",
         "status": "approved",
@@ -640,6 +1179,13 @@
         "target": "提交当前标注",
         "status": "approved",
         "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Subscribe to HumanSignal news and tips from Heidi",
+        "target": "订阅 Heidi 的 HumanSignal 新闻和提示",
+        "status": "approved",
+        "priority": "medium",
         "translation_source": "builtin-terms"
       },
       {
@@ -657,11 +1203,39 @@
         "translation_source": "catalog-manual"
       },
       {
+        "source": "Toggle All Region Visibility",
+        "target": "切换所有区域可见性",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Toggle audio playback",
+        "target": "切换音频播放",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Toggle Bulk Sidebar",
         "target": "切换批量侧边栏",
         "status": "approved",
         "priority": "medium",
         "translation_source": "catalog-manual"
+      },
+      {
+        "source": "Toggle Region Visibility",
+        "target": "切换区域可见性",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Toggle video playback",
+        "target": "切换视频播放",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
       },
       {
         "source": "Token Expiry Date",
@@ -685,11 +1259,102 @@
         "translation_source": "catalog-manual"
       },
       {
+        "source": "Unselect Region",
+        "target": "取消选择区域",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Use the auto-detect tool to automatically suggest regions",
+        "target": "使用自动检测工具自动建议区域",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "User ID",
+        "target": "用户 ID",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Video Controls",
         "target": "视频控制",
         "status": "approved",
         "priority": "medium",
         "translation_source": "catalog-manual"
+      },
+      {
+        "source": "View next image",
+        "target": "查看下一张图像",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "View previous image",
+        "target": "查看上一张图像",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Zoom In",
+        "target": "放大",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Zoom in on the image",
+        "target": "放大图像",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Zoom Out",
+        "target": "缩小",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Zoom out of the image",
+        "target": "缩小图像",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Zoom to 100%",
+        "target": "缩放至 100%",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Zoom to actual image size (100%)",
+        "target": "缩放到图像实际大小（100%）",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Zoom to Fit",
+        "target": "缩放至适合",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Zoom to fit the full image in view",
+        "target": "缩放以完整显示整张图像",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
       }
     ],
     "home": [
@@ -744,10 +1409,10 @@
       },
       {
         "source": "Create new project",
-        "target": "创建新 项目",
+        "target": "创建新项目",
         "status": "approved",
         "priority": "high",
-        "translation_source": "auto-words"
+        "translation_source": "builtin-terms"
       },
       {
         "source": "Create Project",
@@ -797,6 +1462,13 @@
         "status": "approved",
         "priority": "medium",
         "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Home | Label Studio",
+        "target": "首页 | Label Studio",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "catalog-manual"
       },
       {
         "source": "Import",
@@ -965,6 +1637,13 @@
         "status": "approved",
         "priority": "high",
         "translation_source": "builtin-terms"
+      },
+      {
+        "source": "You can save time managing infrastructure and upgrades, plus access more features for automation, quality, and team management, by using the Enterprise cloud service.",
+        "target": "使用企业云服务，你可以节省基础设施与升级维护时间，并获得更多自动化、质量管理和团队管理功能。",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "catalog-manual"
       }
     ],
     "projects": [
@@ -1103,10 +1782,10 @@
       },
       {
         "source": "Create new project",
-        "target": "创建新 项目",
+        "target": "创建新项目",
         "status": "approved",
         "priority": "high",
-        "translation_source": "auto-words"
+        "translation_source": "builtin-terms"
       },
       {
         "source": "Create one and start labeling your data.",
@@ -1149,6 +1828,13 @@
         "status": "approved",
         "priority": "high",
         "translation_source": "auto-words"
+      },
+      {
+        "source": "Description",
+        "target": "描述",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "catalog-manual"
       },
       {
         "source": "Display labels:",
@@ -1361,6 +2047,13 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Projects | Label Studio",
+        "target": "项目 | Label Studio",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "catalog-manual"
+      },
+      {
         "source": "Relations",
         "target": "关系",
         "status": "approved",
@@ -1513,6 +2206,13 @@
         "status": "approved",
         "priority": "high",
         "translation_source": "builtin-terms"
+      },
+      {
+        "source": "You can control access to specific projects and workspaces for internal team members and external annotators using Label Studio Enterprise.",
+        "target": "使用 Label Studio 企业版，你可以为内部团队成员和外部标注员控制特定项目和工作区的访问权限。",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "catalog-manual"
       },
       {
         "source": "You have unsaved changes.",
@@ -1729,6 +2429,13 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Rename",
+        "target": "重命名",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Save",
         "target": "保存",
         "status": "approved",
@@ -1801,8 +2508,36 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Breast Cancer Mammogram Classification",
+        "target": "乳腺癌乳腺摄影分类",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Cancel",
         "target": "取消",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Chatbot Model Assessment",
+        "target": "聊天机器人模型评估",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Choose similar images:",
+        "target": "选择相似图像：",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Create relations between regions",
+        "target": "在区域之间创建关系",
         "status": "approved",
         "priority": "medium",
         "translation_source": "builtin-terms"
@@ -1833,6 +2568,20 @@
         "target": "企业版",
         "status": "approved",
         "priority": "low",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Generated Images",
+        "target": "生成的图像",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Human Preference collection for RLHF",
+        "target": "用于 RLHF 的人工偏好收集",
+        "status": "approved",
+        "priority": "medium",
         "translation_source": "builtin-terms"
       },
       {
@@ -1878,6 +2627,13 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "LLM Ranker",
+        "target": "LLM 排序器",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Model",
         "target": "模型",
         "status": "approved",
@@ -1906,6 +2662,20 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Please provide additional comments",
+        "target": "请提供额外评论",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Please read the passage",
+        "target": "请阅读这段内容",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Predictions",
         "target": "预测",
         "status": "approved",
@@ -1924,6 +2694,13 @@
         "target": "预标注",
         "status": "approved",
         "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Rate this article",
+        "target": "给这篇文章评分",
+        "status": "approved",
+        "priority": "medium",
         "translation_source": "builtin-terms"
       },
       {
@@ -1948,10 +2725,38 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "See a log of user actions for this annotation",
+        "target": "查看此标注的用户操作日志",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Select a text span answering the following question:",
+        "target": "选择一个文本片段来回答以下问题：",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Select document related to the query:",
+        "target": "选择与查询相关的文档：",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Select label and click the image to start",
         "target": "选择标签并点击图像开始",
         "status": "approved",
         "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Select predictable region spans in time series:",
+        "target": "选择时间序列中的可预测区域跨度：",
+        "status": "approved",
+        "priority": "medium",
         "translation_source": "builtin-terms"
       },
       {
@@ -1976,6 +2781,13 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Supervised Language Model Fine-tuning",
+        "target": "监督式语言模型微调",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "The instruction field supports HTML markup and it allows use of images, iframes (pdf).",
         "target": "说明字段支持 HTML 标记，并允许使用图片、iframe（PDF）。",
         "status": "approved",
@@ -1990,8 +2802,36 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Upload predictions to automatically prelabel your data and speed up annotation. Import predictions from multiple model versions to compare their performance, or connect live models from the Model page to generate predictions on demand.",
+        "target": "上传预测结果以自动预标注你的数据并加快标注。你可以从多个模型版本导入预测结果以比较其表现，或从模型页面连接实时模型按需生成预测。",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Use predictions to prelabel tasks",
         "target": "使用预测结果对任务进行预标注",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "View annotation activity",
+        "target": "查看标注活动",
+        "status": "approved",
+        "priority": "low",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Visual Ranker",
+        "target": "视觉排序器",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "What are the key benefits of using Reinforcement Learning from Human Feedback (RLHF) for dataset collection in the context of Large Language Model (LLM) generation?",
+        "target": "在大语言模型（LLM）生成场景中，使用基于人类反馈的强化学习（RLHF）进行数据集收集的主要优势是什么？",
         "status": "approved",
         "priority": "medium",
         "translation_source": "builtin-terms"
@@ -2111,8 +2951,22 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Browse Templates",
+        "target": "浏览模板",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "catalog-manual"
+      },
+      {
         "source": "Cancel",
         "target": "取消",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Close",
+        "target": "关闭",
         "status": "approved",
         "priority": "high",
         "translation_source": "builtin-terms"
@@ -2130,6 +2984,27 @@
         "status": "approved",
         "priority": "high",
         "translation_source": "auto-phrases"
+      },
+      {
+        "source": "Color",
+        "target": "颜色",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "catalog-manual"
+      },
+      {
+        "source": "Configure the labeling interface with tags.",
+        "target": "使用标签配置标注界面。",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "catalog-manual"
+      },
+      {
+        "source": "Configure the labeling interface with tags. See all tags.",
+        "target": "使用标签配置标注界面。查看所有标签。",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "catalog-manual"
       },
       {
         "source": "Configure your AWS S3 connection with all required Label Studio settings",
@@ -2186,6 +3061,13 @@
         "status": "approved",
         "priority": "high",
         "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Connect a machine learning model to generate live predictions for your project. Compare predictions, accelerate labeling with automatic prelabeling, and direct your team to the most impactful tasks through active learning.",
+        "target": "连接机器学习模型，为你的项目生成实时预测。比较预测结果，使用自动预标注加速标注，并通过主动学习让团队优先处理最有价值的任务。",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "catalog-manual"
       },
       {
         "source": "Connect Model",
@@ -2475,6 +3357,13 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Random sampling",
+        "target": "随机采样",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "catalog-manual"
+      },
+      {
         "source": "Redis Storage",
         "target": "Redis 存储",
         "status": "approved",
@@ -2493,6 +3382,13 @@
         "target": "重置缓存",
         "status": "approved",
         "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Reset Cache may help in cases like if you are unable to modify the labeling configuration due to validation errors concerning existing labels, but you are confident that the labels don't exist. You can use this action to reset the cache and try again.",
+        "target": "如果由于现有标签的校验错误而无法修改标注配置，但你确认这些标签并不存在，重置缓存可能会有帮助。你可以使用此操作重置缓存并重试。",
+        "status": "approved",
+        "priority": "high",
         "translation_source": "builtin-terms"
       },
       {
@@ -2543,6 +3439,20 @@
         "status": "approved",
         "priority": "high",
         "translation_source": "builtin-terms"
+      },
+      {
+        "source": "See all",
+        "target": "查看全部",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "catalog-manual"
+      },
+      {
+        "source": "See all tags.",
+        "target": "查看所有标签。",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "catalog-manual"
       },
       {
         "source": "Select an option",
@@ -2885,6 +3795,13 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Setup integrations that subscribe to certain events using Webhooks. When an event is triggered, Label Studio sends an HTTP POST request to the configured webhook URL.",
+        "target": "设置使用 Webhook 订阅特定事件的集成。当事件被触发时，Label Studio 会向已配置的 Webhook URL 发送 HTTP POST 请求。",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "catalog-manual"
+      },
+      {
         "source": "Webhooks",
         "target": "网络钩子",
         "status": "approved",
@@ -2924,6 +3841,13 @@
       {
         "source": "Copied!",
         "target": "已复制！",
+        "status": "approved",
+        "priority": "low",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Copy link",
+        "target": "复制链接",
         "status": "approved",
         "priority": "low",
         "translation_source": "builtin-terms"
@@ -2976,6 +3900,13 @@
         "status": "approved",
         "priority": "medium",
         "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Reset Link",
+        "target": "重置链接",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
       }
     ],
     "templates": [
@@ -3008,11 +3939,25 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Breast Cancer Mammogram Classification",
+        "target": "乳腺癌乳腺摄影分类",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Chat",
         "target": "聊天",
         "status": "approved",
         "priority": "medium",
         "translation_source": "catalog-manual"
+      },
+      {
+        "source": "Chatbot Model Assessment",
+        "target": "聊天机器人模型评估",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
       },
       {
         "source": "Community Contributions",
@@ -3029,10 +3974,45 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Content Moderation",
+        "target": "内容审核",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Content-based Image Retrieval",
+        "target": "基于内容的图像检索",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Conversational AI",
         "target": "对话式 AI",
         "status": "approved",
         "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Conversational Analysis",
+        "target": "对话分析",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Coreference Resolution & Entity Linking",
+        "target": "共指消解与实体链接",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Document Retrieval",
+        "target": "文档检索",
+        "status": "approved",
+        "priority": "high",
         "translation_source": "builtin-terms"
       },
       {
@@ -3071,6 +4051,20 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "HTML Entity Recognition",
+        "target": "HTML 实体识别",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Human Preference collection for RLHF",
+        "target": "用于 RLHF 的人工偏好收集",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Image Captioning",
         "target": "图像描述",
         "status": "approved",
@@ -3083,6 +4077,20 @@
         "status": "approved",
         "priority": "high",
         "translation_source": "catalog-manual"
+      },
+      {
+        "source": "Intent Classification",
+        "target": "意图分类",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Intent Classification and Slot Filling",
+        "target": "意图分类与槽位填充",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
       },
       {
         "source": "Inventory Tracking",
@@ -3110,6 +4118,27 @@
         "target": "浅色",
         "status": "approved",
         "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "LLM Ranker",
+        "target": "LLM 排序器",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "LLM Response Grading",
+        "target": "LLM 回复评分",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Machine Translation",
+        "target": "机器翻译",
+        "status": "approved",
+        "priority": "high",
         "translation_source": "builtin-terms"
       },
       {
@@ -3148,6 +4177,13 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "OCR Invoices Pre-NER BIO Format",
+        "target": "OCR 发票预实体识别 BIO 格式",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "OCR Labeling for PDFs",
         "target": "PDF OCR 标注",
         "status": "approved",
@@ -3162,6 +4198,34 @@
         "translation_source": "catalog-manual"
       },
       {
+        "source": "Pairwise classification",
+        "target": "成对分类",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Pairwise regression",
+        "target": "成对回归",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "PDF Classification",
+        "target": "PDF 分类",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Question Answering",
+        "target": "问题回答",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Ranking & Scoring",
         "target": "排序与打分",
         "status": "approved",
@@ -3169,8 +4233,29 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Relation Extraction",
+        "target": "关系抽取",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Response Generation",
+        "target": "回复生成",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Response Selection",
         "target": "响应选择",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Search Page Ranking",
+        "target": "搜索结果页排序",
         "status": "approved",
         "priority": "high",
         "translation_source": "builtin-terms"
@@ -3190,8 +4275,50 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Signal Quality",
+        "target": "信号质量",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Signal Quality Detection",
+        "target": "信号质量检测",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Sound Event Detection",
+        "target": "声音事件检测",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Speaker Segmentation",
+        "target": "说话人分段",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Speech Transcription",
+        "target": "语音转写",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Structured Data Parsing",
         "target": "结构化数据解析",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Supervised Language Model Fine-tuning",
+        "target": "监督式语言模型微调",
         "status": "approved",
         "priority": "high",
         "translation_source": "builtin-terms"
@@ -3204,6 +4331,34 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Taxonomy",
+        "target": "分类体系",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Text Classification",
+        "target": "文本分类",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Text Summarization",
+        "target": "文本摘要",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Text-to-Image Generation",
+        "target": "文生图生成",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Time Series Analysis",
         "target": "时间序列分析",
         "status": "approved",
@@ -3211,10 +4366,45 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Time Series Forecasting",
+        "target": "时间序列预测",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Uh oh, this page doesn’t exist.",
         "target": "哎呀，这个页面不存在。",
         "status": "approved",
         "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Video Classification",
+        "target": "视频分类",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Video Frame Classification",
+        "target": "视频帧分类",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Video Object Tracking",
+        "target": "视频目标跟踪",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Video Timeline Segmentation",
+        "target": "视频时间轴分割",
+        "status": "approved",
+        "priority": "high",
         "translation_source": "builtin-terms"
       },
       {
@@ -3237,6 +4427,13 @@
         "status": "approved",
         "priority": "high",
         "translation_source": "catalog-manual"
+      },
+      {
+        "source": "Visual Ranker",
+        "target": "视觉排序器",
+        "status": "approved",
+        "priority": "high",
+        "translation_source": "builtin-terms"
       }
     ],
     "generic": [
@@ -3255,6 +4452,20 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Audio Segmentation",
+        "target": "音频分割",
+        "status": "approved",
+        "priority": "low",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Auto Detect",
+        "target": "自动检测",
+        "status": "approved",
+        "priority": "low",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "By Time",
         "target": "按时间",
         "status": "approved",
@@ -3267,6 +4478,13 @@
         "status": "approved",
         "priority": "medium",
         "translation_source": "auto-words"
+      },
+      {
+        "source": "Close",
+        "target": "关闭",
+        "status": "approved",
+        "priority": "low",
+        "translation_source": "builtin-terms"
       },
       {
         "source": "Combine automation plus human supervision to evaluate and ensure LLM quality in the Enterprise platform.",
@@ -3287,6 +4505,13 @@
         "target": "已复制！",
         "status": "approved",
         "priority": "low",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Create relations between regions",
+        "target": "在区域之间创建关系",
+        "status": "approved",
+        "priority": "medium",
         "translation_source": "builtin-terms"
       },
       {
@@ -3369,6 +4594,20 @@
       {
         "source": "Home",
         "target": "首页",
+        "status": "approved",
+        "priority": "low",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Hop backward",
+        "target": "快速向后跳转",
+        "status": "approved",
+        "priority": "low",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Hop forward",
+        "target": "快速向前跳转",
         "status": "approved",
         "priority": "low",
         "translation_source": "builtin-terms"
@@ -3458,10 +4697,31 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Link regions to define relationships between them",
+        "target": "链接区域以定义它们之间的关系",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Lock Region",
+        "target": "锁定区域",
+        "status": "approved",
+        "priority": "low",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Log Out",
         "target": "退出登录",
         "status": "approved",
         "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Magic Wand",
+        "target": "魔棒工具",
+        "status": "approved",
+        "priority": "low",
         "translation_source": "builtin-terms"
       },
       {
@@ -3479,10 +4739,24 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Pan Image",
+        "target": "平移图像",
+        "status": "approved",
+        "priority": "low",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Playback Settings",
         "target": "播放设置",
         "status": "approved",
         "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Press Shift + Enter to Add",
+        "target": "按 Shift + Enter 添加",
+        "status": "approved",
+        "priority": "medium",
         "translation_source": "builtin-terms"
       },
       {
@@ -3498,6 +4772,20 @@
         "status": "approved",
         "priority": "low",
         "translation_source": "catalog-manual"
+      },
+      {
+        "source": "Rotate Left",
+        "target": "向左旋转",
+        "status": "approved",
+        "priority": "low",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Rotate Right",
+        "target": "向右旋转",
+        "status": "approved",
+        "priority": "low",
+        "translation_source": "builtin-terms"
       },
       {
         "source": "Save",
@@ -3518,6 +4806,13 @@
         "target": "已保存！",
         "status": "approved",
         "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Select a region to view its properties, metadata and available actions",
+        "target": "选择一个区域以查看其属性、元数据和可用操作",
+        "status": "approved",
+        "priority": "medium",
         "translation_source": "builtin-terms"
       },
       {
@@ -3549,6 +4844,13 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "Show all authors",
+        "target": "显示所有作者",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Slack Community",
         "target": "Slack 社区",
         "status": "approved",
@@ -3567,6 +4869,13 @@
         "target": "开始标注并跟踪你的结果",
         "status": "approved",
         "priority": "high",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Step forward",
+        "target": "前进一帧",
+        "status": "approved",
+        "priority": "low",
         "translation_source": "builtin-terms"
       },
       {
@@ -3591,6 +4900,13 @@
         "translation_source": "catalog-manual"
       },
       {
+        "source": "Upload Image",
+        "target": "上传图片",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
         "source": "Use automation to instantly label large-scale datasets without sacrificing quality in the Enterprise platform.",
         "target": "使用自动化可即时标注大规模数据集，同时在企业版平台中不牺牲质量。",
         "status": "approved",
@@ -3602,6 +4918,13 @@
         "target": "使用此面板",
         "status": "approved",
         "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "View region details",
+        "target": "查看区域详情",
+        "status": "approved",
+        "priority": "low",
         "translation_source": "builtin-terms"
       },
       {
@@ -3619,10 +4942,45 @@
         "translation_source": "builtin-terms"
       },
       {
+        "source": "You can control access to specific projects and workspaces for internal team members and external annotators using Label Studio Enterprise.",
+        "target": "使用 Label Studio 企业版，你可以为内部团队成员和外部标注员控制特定项目和工作区的访问权限。",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "catalog-manual"
+      },
+      {
         "source": "You can increase the quality of your labeled data with reviewer workflows and task agreement scores using Label Studio Enterprise.",
         "target": "你可以使用 Label Studio 企业版的审核流程和任务一致性评分来提高标注数据质量。",
         "status": "approved",
         "priority": "medium",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "You can save time managing infrastructure and upgrades, plus access more features for automation, quality, and team management, by using the Enterprise cloud service.",
+        "target": "使用企业云服务，你可以节省基础设施与升级维护时间，并获得更多自动化、质量管理和团队管理功能。",
+        "status": "approved",
+        "priority": "medium",
+        "translation_source": "catalog-manual"
+      },
+      {
+        "source": "Zoom In",
+        "target": "放大",
+        "status": "approved",
+        "priority": "low",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Zoom Out",
+        "target": "缩小",
+        "status": "approved",
+        "priority": "low",
+        "translation_source": "builtin-terms"
+      },
+      {
+        "source": "Zoom to fit",
+        "target": "缩放至适合",
+        "status": "approved",
+        "priority": "low",
         "translation_source": "builtin-terms"
       }
     ]

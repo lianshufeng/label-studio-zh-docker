@@ -130,6 +130,30 @@ def render_js(module_maps: dict[str, dict[str, str]]) -> str:
     updated = updated.replace(/\\bSubmitted annotations:\\s*(\\d+)\\b/g, "已提交标注：$1");
     updated = updated.replace(/\\bPredictions:\\s*(\\d+)\\b/g, "预测：$1");
     updated = updated.replace(/\\(opens in a new tab\\)/g, "(在新标签页中打开)");
+    updated = updated.replace(/^Home \\| Label Studio$/g, "首页 | Label Studio");
+    updated = updated.replace(/^Projects \\| Label Studio$/g, "项目 | Label Studio");
+    updated = updated.replace(/^Create new project$/g, "创建新项目");
+    updated = updated.replace(/^Cancel project creation$/g, "取消项目创建");
+    updated = updated.replace(/^Description$/g, "描述");
+    updated = updated.replace(/^Optional description of your project$/g, "项目可选描述");
+    updated = updated.replace(/\bSee all tags\b/g, "查看所有标签");
+    updated = updated.replace(/\bSee all\b/g, "查看全部");
+    updated = updated.replace(/\bAdd Webhook\b/g, "添加网络钩子");
+    updated = updated.replace(/\bAdd your first Webhook\b/g, "添加你的第一个网络钩子");
+    updated = updated.replace(
+      /You can control access to specific projects and workspaces for internal team members and external annotators using Label Studio 企业版\\./g,
+      "使用 Label Studio 企业版，你可以为内部团队成员和外部标注员控制特定项目和工作区的访问权限。"
+    );
+    updated = updated.replace(/^Invite Members$/g, "邀请成员");
+    updated = updated.replace(/^Reset Link$/g, "重置链接");
+    updated = updated.replace(/^Copy link$/g, "复制链接");
+    updated = updated.replace(/^Legacy Token$/g, "旧版令牌");
+    updated = updated.replace(/^Upload Image$/g, "上传图片");
+    updated = updated.replace(/^Phone$/g, "电话");
+    updated = updated.replace(
+      /Invite members to join your Label Studio instance\. People that you invite have full access to all of your projects\. Learn more\./g,
+      "邀请成员加入你的 Label Studio 实例。你邀请的人将拥有你所有项目的完整访问权限。了解更多。"
+    );
     return updated;
   }}
 
@@ -184,6 +208,10 @@ def render_js(module_maps: dict[str, dict[str, str]]) -> str:
       return;
     }}
     processAttributes(root);
+    var elementWalker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
+    while (elementWalker.nextNode()) {{
+      processAttributes(elementWalker.currentNode);
+    }}
     var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {{
       acceptNode: function (node) {{
         if (!node.parentElement || shouldSkipElement(node.parentElement)) {{
@@ -202,11 +230,17 @@ def render_js(module_maps: dict[str, dict[str, str]]) -> str:
     walk(document.body);
   }}
 
+  function scheduleApplyOverlay() {{
+    [0, 120, 400, 1000].forEach(function (delay) {{
+      window.setTimeout(applyOverlay, delay);
+    }});
+  }}
+
   function hookHistory(methodName) {{
     var original = history[methodName];
     history[methodName] = function () {{
       var result = original.apply(this, arguments);
-      window.setTimeout(applyOverlay, 0);
+      scheduleApplyOverlay();
       return result;
     }};
   }}
@@ -230,13 +264,13 @@ def render_js(module_maps: dict[str, dict[str, str]]) -> str:
   hookHistory("pushState");
   hookHistory("replaceState");
   window.addEventListener("popstate", function () {{
-    window.setTimeout(applyOverlay, 0);
+    scheduleApplyOverlay();
   }});
 
   if (document.readyState === "loading") {{
-    document.addEventListener("DOMContentLoaded", applyOverlay, {{ once: true }});
+    document.addEventListener("DOMContentLoaded", scheduleApplyOverlay, {{ once: true }});
   }} else {{
-    applyOverlay();
+    scheduleApplyOverlay();
   }}
 
   observer.observe(document.documentElement, {{

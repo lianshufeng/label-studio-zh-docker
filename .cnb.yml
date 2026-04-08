@@ -1,0 +1,29 @@
+testing:
+  push:
+    - name: docker-build-and-push
+      services:
+        - docker
+      docker:
+        image: docker:24-git
+      stages:
+        - name: Build & Push image
+          script:
+            - |
+              set -euo pipefail
+
+              IMAGE_REPO="vvllm/label-studio-zh"
+
+              BRANCH_NAME="${CNB_BRANCH:-${CNB_REF_NAME:-${CNB_TAG:-${CNB_COMMIT_SHORT:-latest}}}}"
+              BRANCH_NAME="$(printf '%s' "${BRANCH_NAME}" | tr '[:upper:]' '[:lower:]' | tr '/ ' '--')"
+
+              echo "IMAGE_REPO=${IMAGE_REPO}"
+              echo "BRANCH_NAME=${BRANCH_NAME}"
+
+              docker login -u "${DOCKERHUB_USERNAME}" -p "${DOCKERHUB_TOKEN}"
+
+              docker build --progress=plain \
+                -f Dockerfile \
+                -t "${IMAGE_REPO}:${BRANCH_NAME}" \
+                .
+
+              docker push "${IMAGE_REPO}:${BRANCH_NAME}"
