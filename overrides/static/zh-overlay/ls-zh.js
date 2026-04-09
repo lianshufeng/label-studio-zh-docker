@@ -789,6 +789,80 @@
       return text.replace(trimmed, translated);
     }
     var updated = text;
+    updated = updated.replace(/^Beta$/g, "测试版");
+    updated = updated.replace(/^Copy$/g, "复制");
+    updated = updated.replace(/^Personal access token$/g, "个人访问令牌");
+    updated = updated.replace(/^Revoke$/g, "吊销");
+    updated = updated.replace(/\|\s*My Account\s*\|/g, "| 我的账户 |");
+    updated = updated.replace(/查看\s*See\s*文档/g, "查看文档");
+    updated = updated.replace(/See\s*文档/g, "文档");
+    updated = updated.replace(/^New Webhook$/g, "新网络钩子");
+    updated = updated.replace(/新\s*Webhook/g, "新网络钩子");
+    updated = updated.replace(/^Payload URL$/g, "负载 URL");
+    updated = updated.replace(/^Is Active$/g, "启用");
+    updated = updated.replace(/^Headers$/g, "请求头");
+    updated = updated.replace(/^Payload$/g, "负载");
+    updated = updated.replace(/^Send payload$/g, "发送负载");
+    updated = updated.replace(/^Send for all actions$/g, "对所有操作发送");
+    updated = updated.replace(/^Add\s*Webhook$/g, "添加网络钩子");
+    updated = updated.replace(/^Add your first\s*Webhook$/g, "添加你的第一个网络钩子");
+    updated = updated.replace(/添加你的第一个\s*Webhook/g, "添加你的第一个网络钩子");
+    updated = updated.replace(/添加\s*Webhook/g, "添加网络钩子");
+    updated = updated.replace(/^Discard and leave$/g, "放弃并离开");
+    updated = updated.replace(
+      /^To select which field\(s\) to label you need to upload the data\.\s*Alternatively, you can provide it using Code mode\.$/g,
+      "要选择用于标注的字段，你需要先上传数据。或者，你也可以通过代码模式提供。"
+    );
+    updated = updated.replace(/^Use paragraphs from$/g, "段落来源");
+    updated = updated.replace(/^Provide response$/g, "提供回复");
+    updated = updated.replace(
+      /Start from one of our predefined templates or create your own config on the Code panel\. The labeling config is XML-based and you can read about the available tags in our documentation\./g,
+      "你可以从我们预定义的模板之一开始，或在代码面板中创建你自己的配置。标注配置基于 XML，你可以在我们的文档中了解可用标签。"
+    );
+    updated = updated.replace(/^(\d+)\s+characters$/g, "$1 个字符");
+    updated = updated.replace(/^(\d+)\s*\/\s*(\d+)\s+submissions$/g, "$1 / $2 次提交");
+    updated = updated.replace(/^Press Shift \+ Enter to add$/g, "按 Shift + Enter 添加");
+    updated = updated.replace(/^View region details$/g, "查看区域详情");
+    updated = updated.replace(/^Select a region to see its attributes, metadata and actions$/g, "选择一个区域以查看其属性、元数据和操作");
+    updated = updated.replace(/^Labeled regions will appear in this area$/g, "已标注区域将显示在此区域");
+    updated = updated.replace(/^Start labeling and follow your results here$/g, "开始标注后，可在此查看结果");
+    updated = updated.replace(/^Use this panel$/g, "使用此面板");
+    updated = updated.replace(
+      /Set up integrations that subscribe to specific events using Webhooks\. When an event is triggered, Label Studio sends an HTTP POST request to the configured Webhook URL\./g,
+      "设置使用网络钩子订阅特定事件的集成。当事件被触发时，Label Studio 会向已配置的网络钩子 URL 发送 HTTP POST 请求。"
+    );
+    updated = updated.replace(
+      /设置使用\s*Webhook\s*订阅特定事件的集成。当事件被触发时，Label Studio 会向已配置的\s*Webhook URL\s*发送 HTTP POST 请求。/g,
+      "设置使用网络钩子订阅特定事件的集成。当事件被触发时，Label Studio 会向已配置的网络钩子 URL 发送 HTTP POST 请求。"
+    );
+    updated = updated.replace(
+      /You are about to reset the cache for New Project #\d+\.\s*This action cannot be undone\./g,
+      "你将要重置该项目的缓存。此操作无法撤销。"
+    );
+    updated = updated.replace(
+      /To proceed, type "cache" in the field below:/g,
+      "若要继续，请在下方输入框中键入“cache”："
+    );
+    updated = updated.replace(
+      /Authenticate with our API using your personal access token\.\s*See/g,
+      "使用你的个人访问令牌通过我们的 API 进行身份验证。查看"
+    );
+    updated = updated.replace(
+      /Are you sure you want to delete this access token\?\s*Any application using this token will need a new token to be able to access Label Studio/g,
+      "确定要删除此访问令牌吗？任何使用此令牌的应用都需要新的令牌才能访问 Label Studio。"
+    );
+    updated = updated.replace(
+      /^Authenticate with our API using your personal access token\. See$/g,
+      "使用你的个人访问令牌通过我们的 API 进行身份验证。参见"
+    );
+    updated = updated.replace(
+      /^Copy your new access token from below and keep it secure\.$/g,
+      "请复制下方的新访问令牌并妥善保管。"
+    );
+    updated = updated.replace(
+      /^Do not share this key with anyone\. If you suspect any keys have been compromised, you should revoke them and create new ones\.$/g,
+      "不要与任何人分享此密钥。如果你怀疑任何密钥已泄露，请吊销它们并重新创建新的令牌。"
+    );
     phrasePairs.forEach(function (pair) {
       if (updated.indexOf(pair[0]) !== -1) {
         updated = updated.split(pair[0]).join(pair[1]);
@@ -811,8 +885,8 @@
     updated = updated.replace(/^Cancel project creation$/g, "取消项目创建");
     updated = updated.replace(/^Description$/g, "描述");
     updated = updated.replace(/^Optional description of your project$/g, "项目可选描述");
-    updated = updated.replace(/See all tags/g, "查看所有标签");
-    updated = updated.replace(/See all/g, "查看全部");
+    updated = updated.replace(/\bSee all tags\b/g, "查看所有标签");
+    updated = updated.replace(/\bSee all\b/g, "查看全部");
     updated = updated.replace(/Add Webhook/g, "添加网络钩子");
     updated = updated.replace(/Add your first Webhook/g, "添加你的第一个网络钩子");
     updated = updated.replace(
@@ -871,6 +945,60 @@
     });
   }
 
+  function applySpecialCaseTranslations(root) {
+    if (!(root instanceof Element || root instanceof Document)) {
+      return;
+    }
+    var docLinks = root.querySelectorAll ? root.querySelectorAll('a[href*="guide/api.html"]') : [];
+    docLinks.forEach(function (link) {
+      var parent = link.parentElement;
+      if (!parent || parent.tagName !== "P") {
+        return;
+      }
+      var prefixNode = parent.firstChild;
+      if (!prefixNode || prefixNode.nodeType !== Node.TEXT_NODE) {
+        prefixNode = document.createTextNode("");
+        parent.insertBefore(prefixNode, link);
+      }
+      prefixNode.nodeValue = "使用你的个人访问令牌通过我们的 API 进行身份验证。查看 ";
+      if (link.firstChild && link.firstChild.nodeType === Node.TEXT_NODE) {
+        link.firstChild.nodeValue = "文档 ";
+      } else {
+        link.insertBefore(document.createTextNode("文档 "), link.firstChild);
+      }
+    });
+    var nodes = root.querySelectorAll ? root.querySelectorAll("p, div") : [];
+    nodes.forEach(function (node) {
+      var text = normalizeText(node.textContent);
+      if (
+        text.indexOf("Authenticate with our API using your personal access token. See") !== -1 ||
+        text.indexOf("查看 See 文档") !== -1
+      ) {
+        var link = node.querySelector("a");
+        if (link) {
+          var prefixNode = node.firstChild;
+          if (!prefixNode || prefixNode.nodeType !== Node.TEXT_NODE) {
+            prefixNode = document.createTextNode("");
+            node.insertBefore(prefixNode, link);
+          }
+          prefixNode.nodeValue = "使用你的个人访问令牌通过我们的 API 进行身份验证。查看 ";
+          if (link.firstChild && link.firstChild.nodeType === Node.TEXT_NODE) {
+            link.firstChild.nodeValue = "文档 ";
+          } else {
+            link.insertBefore(document.createTextNode("文档 "), link.firstChild);
+          }
+          return;
+        }
+      }
+      if (
+        text.indexOf("Are you sure you want to delete this access token?") !== -1 &&
+        text.indexOf("Any application using this token will need a new token to be able to access Label Studio") !== -1
+      ) {
+        node.textContent = "确定要删除此访问令牌吗？任何使用此令牌的应用都需要新的令牌才能访问 Label Studio。";
+      }
+    });
+  }
+
   function walk(root) {
     if (!root) {
       return;
@@ -903,6 +1031,7 @@
   function applyOverlay() {
     translateDocumentTitle();
     walk(document.body);
+    applySpecialCaseTranslations(document);
   }
 
   function scheduleApplyOverlay() {
