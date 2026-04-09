@@ -4,23 +4,23 @@
 
 ## 界面截图
 
-### 首页
+产品页面：
 
-![Label Studio 首页](docs/label-studio-home.png)
+![产品页面](./docs/label-studio-zh-preview.png)
 
-### 用户菜单页
+用户菜单页：
 
-![Label Studio 用户菜单页](docs/label-studio-user-menu.png)
+![用户菜单页](./docs/label-studio-user-menu.png)
 
-### 项目菜单页
+项目菜单页：
 
-![Label Studio 项目菜单页](docs/label-studio-project-menu.png)
+![项目菜单页](./docs/label-studio-project-menu.png)
 
 仓库做的事情很简单：
 
 - 不修改官方前端源码
 - 通过 `Dockerfile` 注入中文 overlay 资源
-- 通过 `patches/apply_overlay.py` 给模板加上 JS / CSS 挂载点
+- 通过 `patches/apply_overlay.py` 给模板增加 JS / CSS 挂载点
 - 通过 CNB 自动构建并推送镜像到国内仓库 `cnb.cool/vvllm/label-studio-zh-docker:{分支名}`，同时保留海外仓库 `lianshufeng/label-studio-zh:{分支名}` 作为兼容镜像
 
 ## 镜像用途
