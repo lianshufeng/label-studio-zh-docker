@@ -2,6 +2,20 @@
 
 这是一个基于 `heartexlabs/label-studio:1.23.0` 的 Label Studio 中文 overlay 镜像仓库。
 
+## 界面截图
+
+### 首页
+
+![Label Studio 首页](docs/label-studio-home.png)
+
+### 用户菜单页
+
+![Label Studio 用户菜单页](docs/label-studio-user-menu.png)
+
+### 项目菜单页
+
+![Label Studio 项目菜单页](docs/label-studio-project-menu.png)
+
 仓库做的事情很简单：
 
 - 不修改官方前端源码
